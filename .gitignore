@@ -1,0 +1,18 @@
+# .NET
+bin/
+obj/
+*.user
+.vs/
+*.suo
+
+# Angular / Node
+node_modules/
+dist/
+.angular/
+
+# IDE
+.vscode/
+*.swp
+
+# Diğer
+*.log
