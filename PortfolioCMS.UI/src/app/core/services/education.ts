@@ -16,9 +16,7 @@ export interface Education {
   isExchange: boolean;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class EducationService {
   private apiUrl = `${environment.apiUrl}/Educations`;
 
@@ -28,12 +26,12 @@ export class EducationService {
     return this.http.get<Education[]>(this.apiUrl);
   }
 
-  createEducation(education: Omit<Education, 'id'>): Observable<Education> {
-    return this.http.post<Education>(this.apiUrl, education);
+  createEducation(edu: Omit<Education, 'id'>): Observable<Education> {
+    return this.http.post<Education>(this.apiUrl, edu);
   }
 
-  updateEducation(id: number, education: Education): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${id}`, education);
+  updateEducation(id: number, edu: Omit<Education, 'id'>): Observable<Education> {
+    return this.http.put<Education>(`${this.apiUrl}/${id}`, edu);
   }
 
   deleteEducation(id: number): Observable<void> {

@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core';
 import { RevealDirective } from './core/directives/reveal.directive';
+import { AcademicPaper, AcademicPaperService } from './core/services/academic-paper';
 import { Education, EducationService } from './core/services/education';
 import { LanguageService } from './core/services/language.service';
 import { Project, ProjectService } from './core/services/project';
@@ -16,6 +17,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   projects: Project[] = [];
   skills: Skill[] = [];
   educations: Education[] = [];
+  papers: AcademicPaper[] = [];
   private readonly languageService = inject(LanguageService);
   language = this.languageService.language;
   emailCopied = false;
@@ -30,6 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private projectService: ProjectService,
     private skillService: SkillService,
     private educationService: EducationService,
+    private paperService: AcademicPaperService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -54,6 +57,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.educations = data;
       this.cdr.detectChanges();
     });
+    this.paperService.getPapers().subscribe(data => {
+      this.papers = data;
+      this.cdr.detectChanges();
+    });
   }
 
   toggleLanguage(): void {
@@ -62,7 +69,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll')
   onWindowScroll(): void {
-    this.scrollOffset = Math.min(window.scrollY * 0.12, 220);
+    this.scrollOffset = Math.min(window.scrollY * 0.22, 320);
   }
 
   async copyEmail(): Promise<void> {

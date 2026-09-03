@@ -6,7 +6,8 @@ import { environment } from '../../../environments/environment';
 export interface Skill {
   id: number;
   name: string;
- 
+  category: string;
+  icanurl?: string;
 }
 
 @Injectable({
