@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-display: "DM Serif Display", Georgia, serif;
+  --font-sans: "Manrope", "Segoe UI", sans-serif;
+  --color-ink: #101216;
+  --color-paper: #f0eee7;
+  --color-lime: #e8c547;
+  --color-coral: #ff765f;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: #101216;
+  color: #f0eee7;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+}
+
+button, a { -webkit-tap-highlight-color: transparent; }
+::selection { background: #e8c547; color: #101216; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

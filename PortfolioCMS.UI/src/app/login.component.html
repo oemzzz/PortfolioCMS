@@ -1,0 +1,16 @@
+<main class="login-page">
+  <section class="login-panel" aria-labelledby="login-title">
+    <a routerLink="/" class="back-link">← Portfolyoya dön</a>
+    <p class="login-kicker">Portfolio CMS / Özel alan</p>
+    <h1 id="login-title">Yönetim alanı</h1>
+    <p class="login-intro">İçeriklerini yönetmek için hesabınla devam et.</p>
+    <form (ngSubmit)="onLogin()">
+      <label for="username">Kullanıcı adı</label>
+      <input id="username" name="username" type="text" [(ngModel)]="username" autocomplete="username" required />
+      <label for="password">Şifre</label>
+      <input id="password" name="password" type="password" [(ngModel)]="password" autocomplete="current-password" required />
+      <button type="submit" class="login-button">Giriş yap <span aria-hidden="true">↗</span></button>
+    </form>
+    @if (loginError) { <p class="login-error" role="alert">{{ loginError }}</p> }
+  </section>
+</main>
