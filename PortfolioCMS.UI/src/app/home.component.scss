@@ -256,3 +256,7 @@
   .bento-card, .project-card, .reveal-ready, .ambient-mesh, .ambient-ribbon, .ambient-canvas, .ambient-glow, .ambient-scan, .portfolio-shell::before { transition: none; animation: none; }
   .reveal-ready { opacity: 1; transform: none; }
 }
+.skill-category-card {
+  min-height: auto;
+  height: auto;
+}

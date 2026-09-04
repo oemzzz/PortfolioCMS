@@ -18,11 +18,13 @@
       <h1 class="max-w-5xl font-display text-[clamp(4rem,12vw,10.5rem)] leading-[0.86] tracking-[-0.04em] text-paper">
         Merhaba,<br />ben <span class="text-coral">Atakan.</span>
       </h1>
-      <div class="mt-10 flex flex-col justify-between gap-10 md:flex-row md:items-end">
+      <div class="mt-10 flex flex-col gap-6">
         <p class="max-w-xl text-lg leading-relaxed text-paper/65 md:text-xl">
-          {{ language() === 'tr' ? 'Yeni mezun bir bilgisayar mühendisi olarak fikirleri, insanların gerçekten kullanmak istediği dijital ürünlere dönüştürüyorum.' : 'As a newly graduated computer engineer, I turn ideas into digital products people genuinely want to use.' }}
+          {{ language() === 'tr' ? 'Yeni mezun bir bilgisayar mühendisiyim; .NET ve Angular ile uçtan uca ürünler geliştiriyorum, ağırlıklı olarak backend tarafında çalışıyor, arada da makine öğrenmesiyle araştırma yapıyorum.' : 'I am a newly graduated computer engineer; I build end-to-end products with .NET and Angular, with a backend-heavy focus, and research machine learning on the side.' }}
         </p>
-        <div class="font-mono text-sm text-paper/60"><span class="text-lime">&gt;</span> {{ typedRole }}<span class="cursor-blink text-coral">_</span></div>
+        <div class="min-h-[1.5rem] whitespace-nowrap font-mono text-xs text-paper/60 sm:text-sm">
+          <span class="text-lime">&gt;</span> {{ typedRole }}<span class="cursor-blink text-coral">_</span>
+        </div>
       </div>
       <div class="mt-12 flex flex-wrap gap-4">
         <a href="/assets/cv.pdf" download class="button-primary">{{ language() === 'tr' ? 'CV’yi indir' : 'Download CV' }} <span>↗</span></a>
@@ -40,19 +42,19 @@
       <div class="mt-14 grid gap-5 md:grid-cols-12">
         <article class="bento-card bento-large md:col-span-7">
           <span class="card-kicker">{{ language() === 'tr' ? 'Kısaca ben' : 'A little context' }}</span>
-          <h2 class="mt-12 max-w-xl font-display text-5xl leading-none text-paper md:text-7xl">{{ language() === 'tr' ? 'Kod yazmayı, öğrenmeyi ve işe yarayan şeyler üretmeyi seviyorum.' : 'I love writing code, learning, and building things that matter.' }}</h2>
+          <h2 class="mt-12 max-w-xl font-display text-5xl leading-none text-paper md:text-7xl">{{ language() === 'tr' ? 'Katmanlı mimaride gerçek veri modelleri kuruyorum; bir yandan da ağ güvenliğinde makine öğrenmesi araştırıyorum.' : 'I build real data models in layered architectures, and research machine learning in network security on the side.' }}</h2>
         </article>
         <article class="bento-card accent-card md:col-span-5">
           <span class="card-kicker">{{ language() === 'tr' ? 'Şu anda' : 'Currently' }}</span>
-          <p class="mt-8 text-3xl leading-tight text-ink">{{ language() === 'tr' ? 'Bilgisayar mühendisliği mezunuyum. Full stack geliştirme ve ürün düşüncesi arasında köprü kuruyorum.' : 'I am a computer engineering graduate, connecting full-stack development with product thinking.' }}</p>
+          <p class="mt-8 text-3xl leading-tight text-ink">{{ language() === 'tr' ? 'Bilgisayar mühendisliği mezunuyum. Backend odaklı .NET pozisyonları arıyor, arada makine öğrenmesi üzerine yayın çıkarıyorum.' : 'I am a computer engineering graduate, seeking backend-focused .NET roles while publishing research in machine learning.' }}</p>
         </article>
         <article class="bento-card md:col-span-4">
           <span class="card-kicker">{{ language() === 'tr' ? 'Odak' : 'Focus' }}</span>
-          <p class="mt-8 text-xl leading-relaxed text-paper/70">{{ language() === 'tr' ? 'Temiz backend mimarileri, anlaşılır arayüzler ve sürekli gelişen bir mühendislik pratiği.' : 'Clean backend architecture, clear interfaces, and an engineering practice that keeps evolving.' }}</p>
+          <p class="mt-8 text-xl leading-relaxed text-paper/70">{{ language() === 'tr' ? 'Sürekli öğrenerek kendimi geliştirmek ve her projede daha iyi bir mühendis olmak.' : 'Continuously learning and becoming a better engineer with every project.' }}</p>
         </article>
         <article class="bento-card md:col-span-8">
           <span class="card-kicker">{{ language() === 'tr' ? 'Ekranın ötesinde' : 'Beyond the screen' }}</span>
-          <p class="mt-8 max-w-2xl font-display text-4xl leading-tight text-paper md:text-5xl">{{ language() === 'tr' ? 'Meraklı, üretken ve yeni bir problemi çözmek için hazır.' : 'Curious, productive, and ready to solve the next problem.' }}</p>
+          <p class="mt-8 max-w-2xl font-display text-4xl leading-tight text-paper md:text-5xl">{{ language() === 'tr' ? 'Bir dönem Polonya\'da okudum, İngilizce çalıştım — farklı bir sistemde çalışabilmek beni bir mühendis olarak da değiştirdi.' : 'I studied a semester in Poland, in English — working within a different system changed how I approach engineering.' }}</p>
         </article>
       </div>
     </div>
@@ -87,9 +89,19 @@
   <section id="skills" appReveal class="section-wrap skills-section reveal-section">
     <div class="mx-auto max-w-7xl px-6 py-28 md:px-16 md:py-40">
       <div class="section-heading"><span>04 / {{ language() === 'tr' ? 'Yetenekler' : 'Skills' }}</span><span class="heading-line"></span></div>
-      <div class="mt-14 grid gap-5 md:grid-cols-3">
-        <div class="bento-card md:col-span-2"><span class="card-kicker">{{ language() === 'tr' ? 'Araç kutusu' : 'Toolkit' }}</span><div class="mt-10 flex flex-wrap gap-3">@for (skill of skills; track skill.id) { <span class="skill-pill">{{ skill.name }}</span> } @empty { <span class="text-paper/50">{{ language() === 'tr' ? 'Yetenekler yakında eklenecek.' : 'Skills will be added soon.' }}</span> }</div></div>
-        <div class="bento-card flex min-h-64 flex-col justify-between"><span class="card-kicker">{{ language() === 'tr' ? 'İlke' : 'Principle' }}</span><p class="font-display text-4xl leading-none text-coral">{{ language() === 'tr' ? 'İşe yarasın.' : 'Keep it useful.' }}<br />{{ language() === 'tr' ? 'İnsanca olsun.' : 'Keep it human.' }}</p></div>
+      <div class="mt-14 grid gap-5 md:grid-cols-2 auto-fit">
+        @for (group of skillsByCategory; track group.category) {
+          <div class="bento-card skill-category-card" [style.grid-column]="group.skills.length > 5 ? 'span 2' : 'span 1'">
+            <span class="card-kicker">{{ group.category }}</span>
+            <div class="mt-8 flex flex-wrap gap-3">
+              @for (skill of group.skills; track skill.id) {
+                <span class="skill-pill">{{ skill.name }}</span>
+              }
+            </div>
+          </div>
+        } @empty {
+          <div class="bento-card text-paper/50">{{ language() === 'tr' ? 'Yetenekler yakında eklenecek.' : 'Skills will be added soon.' }}</div>
+        }
       </div>
     </div>
   </section>
@@ -118,12 +130,8 @@
 
   <section id="papers" appReveal class="section-wrap papers-section reveal-section">
     <div class="mx-auto max-w-7xl px-6 py-28 md:px-16 md:py-40">
-      <div class="section-heading"><span>06 / {{ language() === 'tr' ? 'Akademik Yayınlar' : 'Publications' }}</span><span class="heading-line"></span></div>
+      <div class="section-heading"><span>06 / {{ language() === 'tr' ? 'Akademik Çalışmalar' : 'Academic Work' }}</span><span class="heading-line"></span></div>
       <div class="mt-14 grid gap-5 md:grid-cols-2">
-        <article class="bento-card md:col-span-2">
-          <span class="card-kicker text-coral">{{ language() === 'tr' ? 'Araştırma ve yazım' : 'Research & writing' }}</span>
-          <h2 class="mt-8 max-w-3xl font-display text-5xl leading-none text-paper md:text-7xl">{{ language() === 'tr' ? 'Merak ettiğim sorular, üzerinde çalıştığım fikirler.' : 'Questions I explore, ideas I work on.' }}</h2>
-        </article>
         @for (paper of papers; track paper.id) {
           <article class="bento-card">
             <span class="card-kicker">{{ paper.journalName }} · {{ paper.status }}</span>
@@ -132,7 +140,9 @@
             @if (paper.coAuthors) {
               <p class="mt-4 text-sm text-paper/40">{{ paper.coAuthors }}</p>
             }
-            <a [href]="'https://doi.org/' + paper.doiNumber" target="_blank" rel="noopener" class="mt-8 inline-block text-lime transition hover:text-paper">DOI {{ paper.doiNumber }} ↗</a>
+            @if (paper.doiNumber) {
+              <a [href]="'https://doi.org/' + paper.doiNumber" target="_blank" rel="noopener" class="mt-8 inline-block text-lime transition hover:text-paper">DOI {{ paper.doiNumber }} ↗</a>
+            }
           </article>
         } @empty {
           <article class="bento-card"><span class="card-kicker">{{ language() === 'tr' ? 'Yakında' : 'Coming soon' }}</span><p class="mt-8 font-display text-4xl leading-tight text-lime">{{ language() === 'tr' ? 'Yeni araştırmalar,' : 'New research,' }}<br />{{ language() === 'tr' ? 'aynı merak.' : 'same curiosity.' }}</p></article>
@@ -146,8 +156,22 @@
     <div class="mx-auto max-w-7xl px-6 py-28 md:px-16 md:py-40">
       <div class="section-heading"><span>07 / {{ language() === 'tr' ? 'İletişim' : 'Contact' }}</span><span class="heading-line"></span></div>
       <div class="mt-14 grid items-end gap-12 md:grid-cols-2">
-        <div><p class="card-kicker text-coral">{{ language() === 'tr' ? 'Bir projen mi var?' : 'Have a project in mind?' }}</p><h2 class="mt-8 font-display text-6xl leading-[0.9] text-paper md:text-8xl">{{ language() === 'tr' ? 'Birlikte bir şeyler' : 'Let’s make' }}<br /><span class="text-lime">{{ language() === 'tr' ? 'üretelim.' : 'something.' }}</span></h2></div>
-        <div class="md:pb-2"><p class="max-w-md text-lg leading-relaxed text-paper/60">{{ language() === 'tr' ? 'İletişim formu yerine doğrudan ulaşabileceğin bağlantıları bıraktım.' : 'Instead of a contact form, here are direct ways to reach me.' }}</p><div class="mt-8 flex flex-wrap gap-5 text-sm"><a href="mailto:hello@example.com" class="text-lime hover:text-paper">hello@example.com ↗</a><button type="button" class="copy-button cursor-pointer" (click)="copyEmail()">{{ emailCopied ? (language() === 'tr' ? 'Kopyalandı' : 'Copied') : (language() === 'tr' ? 'E-postayı kopyala' : 'Copy email') }}</button><a href="https://github.com" target="_blank" rel="noopener" class="text-paper/60 hover:text-coral">GitHub ↗</a><a href="https://www.linkedin.com" target="_blank" rel="noopener" class="text-paper/60 hover:text-coral">LinkedIn ↗</a><a href="/assets/cv.pdf" download class="text-paper/60 hover:text-coral">CV ↗</a></div></div>
+        <div>
+          <p class="card-kicker text-coral">{{ language() === 'tr' ? 'Bir sonraki adım' : 'Next step' }}</p>
+          <h2 class="mt-8 font-display text-6xl leading-[0.9] text-paper md:text-7xl">
+            {{ language() === 'tr' ? 'İletişime' : 'Get in' }}<br /><span class="text-lime">{{ language() === 'tr' ? 'geçin.' : 'touch.' }}</span>
+          </h2>
+        </div>
+        <div class="md:pb-2">
+          <p class="max-w-md text-lg leading-relaxed text-paper/60">{{ language() === 'tr' ? 'Profesyonel iş birlikleri ve kariyer fırsatları için aşağıdaki kanallardan bana ulaşabilirsiniz.' : 'For professional opportunities and collaborations, feel free to reach out through the channels below.' }}</p>
+          <div class="mt-8 flex flex-wrap gap-5 text-sm">
+            <a href="mailto:atakan.ozcelebi.dev@gmail.com" class="text-lime hover:text-paper">atakan.ozcelebi.dev@gmail.com ↗</a>
+            <button type="button" class="copy-button cursor-pointer" (click)="copyEmail()">{{ emailCopied ? (language() === 'tr' ? 'Kopyalandı' : 'Copied') : (language() === 'tr' ? 'E-postayı kopyala' : 'Copy email') }}</button>
+            <a href="https://github.com/oemzzz" target="_blank" rel="noopener" class="text-paper/60 hover:text-coral">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/atakan-ozcelebi/" target="_blank" rel="noopener" class="text-paper/60 hover:text-coral">LinkedIn ↗</a>
+            <a href="/assets/cv.pdf" download class="text-paper/60 hover:text-coral">CV ↗</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>

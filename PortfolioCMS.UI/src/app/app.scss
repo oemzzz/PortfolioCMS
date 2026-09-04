@@ -1,1 +1,67 @@
 .duration-500 { transition-duration: 500ms; }
+
+// Masaüstü nav — sayfa yüklendiğinde yukarıdan kayarak beliriyor
+.nav-desktop {
+  opacity: 0;
+  transform: translateY(-12px);
+  animation: nav-enter 700ms ease forwards;
+  animation-delay: 200ms;
+}
+
+@keyframes nav-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Masaüstü nav linkleri — altı çizili hover animasyonu
+.nav-link {
+  position: relative;
+  transition: color 250ms ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 300ms ease;
+}
+
+.nav-link:hover {
+  color: #ff765f;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+// Hamburger ikonu — açılınca X'e dönüşüyor
+.hamburger-lines {
+  display: grid;
+  gap: 0.375rem;
+
+  span {
+    transition: transform 350ms ease, opacity 250ms ease;
+    transform-origin: center;
+  }
+}
+
+.hamburger-open {
+  span:nth-child(1) {
+    transform: translateY(0.5625rem) rotate(45deg);
+  }
+  span:nth-child(2) {
+    opacity: 0;
+  }
+  span:nth-child(3) {
+    transform: translateY(-0.5625rem) rotate(-45deg);
+  }
+}

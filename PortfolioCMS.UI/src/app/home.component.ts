@@ -6,6 +6,11 @@ import { LanguageService } from './core/services/language.service';
 import { Project, ProjectService } from './core/services/project';
 import { Skill, SkillService } from './core/services/skill';
 
+interface SkillGroup {
+  category: string;
+  skills: Skill[];
+}
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -26,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   isLoading = true;
   private typewriterTimer?: ReturnType<typeof setTimeout>;
   private typewriterIndex = 0;
-  private readonly roles = ['Full Stack Developer', 'Computer Engineer', 'Builder of useful things'];
+  private readonly roles = ['Computer Engineer', 'Full Stack .NET Developer', 'ML Researcher'];
 
   constructor(
     private projectService: ProjectService,
@@ -35,6 +40,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     private paperService: AcademicPaperService,
     private cdr: ChangeDetectorRef
   ) {}
+
+  get skillsByCategory(): SkillGroup[] {
+    const groups = new Map<string, Skill[]>();
+    for (const skill of this.skills) {
+      if (!groups.has(skill.category)) groups.set(skill.category, []);
+      groups.get(skill.category)!.push(skill);
+    }
+    return Array.from(groups.entries()).map(([category, skills]) => ({ category, skills }));
+  }
 
   ngOnInit(): void {
     this.startTypewriter();
@@ -73,7 +87,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   async copyEmail(): Promise<void> {
-    await navigator.clipboard.writeText('hello@example.com');
+    await navigator.clipboard.writeText('atakan.ozcelebi.dev@gmail.com');
     this.emailCopied = true;
     this.cdr.detectChanges();
     setTimeout(() => {

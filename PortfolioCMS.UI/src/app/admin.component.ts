@@ -105,21 +105,40 @@ import { AuthService } from './core/services/auth';
               <h2 class="text-xl font-bold text-white mb-6">Yeni Yetenek Ekle</h2>
               <form (ngSubmit)="createSkill()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input type="text" [(ngModel)]="newSkill.name" name="name" placeholder="Yetenek Adı (Örn: C#, Angular)" class="bg-[#0a0c10] border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400" required>
+                
+                <!-- Serbest metin inputu -->
                 <input type="text" [(ngModel)]="newSkill.category" name="category" placeholder="Kategori (Örn: Backend, Frontend)" class="bg-[#0a0c10] border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400" required>
+                
                 <button type="submit" class="md:col-span-2 py-3 bg-amber-400 text-gray-950 font-bold rounded-xl hover:bg-amber-300 transition">Yetenek Ekle</button>
               </form>
             </div>
 
             <div class="bg-[#12161f] border border-gray-800/80 rounded-3xl p-6 md:p-8">
               <h2 class="text-xl font-bold text-white mb-6">Mevcut Yetenekler</h2>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 @for (s of skills; track s.id) {
                   <div class="flex justify-between items-center bg-[#0a0c10] border border-gray-800/60 p-4 rounded-2xl">
-                    <div>
-                      <h4 class="font-bold text-white">{{ s.name }}</h4>
-                      <p class="text-xs text-gray-500">{{ s.category }}</p>
-                    </div>
-                    <button (click)="deleteSkill(s.id)" class="text-red-400 hover:text-red-300 text-xs font-semibold">Sil</button>
+                    
+                    <!-- DÜZENLEME MODU KAPALIYKEN -->
+                    @if (editingSkill?.id !== s.id) {
+                      <div>
+                        <h4 class="font-bold text-white">{{ s.name }}</h4>
+                        <p class="text-xs text-gray-500 mt-1">{{ s.category }}</p>
+                      </div>
+                      <div class="flex gap-3">
+                        <button (click)="startEditSkill(s)" class="text-amber-400 hover:text-amber-300 text-xs font-semibold">Düzenle</button>
+                        <button (click)="deleteSkill(s.id)" class="text-red-400 hover:text-red-300 text-xs font-semibold">Sil</button>
+                      </div>
+                    } 
+                    <!-- DÜZENLEME MODU AÇIKKEN -->
+                    @else {
+                      <div class="flex flex-wrap gap-2 w-full items-center">
+                        <input type="text" [(ngModel)]="editingSkill!.name" class="flex-1 bg-[#12161f] border border-gray-700 rounded-lg px-3 py-2 text-white text-sm" placeholder="Yetenek Adı">
+                        <input type="text" [(ngModel)]="editingSkill!.category" class="bg-[#12161f] border border-gray-700 rounded-lg px-3 py-2 text-white text-sm" placeholder="Kategori">
+                        <button (click)="saveEditSkill()" class="px-3 py-2 bg-green-500/20 text-green-400 hover:bg-green-500/30 rounded-lg text-xs font-bold transition">Kaydet</button>
+                        <button (click)="cancelEditSkill()" class="px-3 py-2 bg-gray-500/20 text-gray-400 hover:bg-gray-500/30 rounded-lg text-xs font-bold transition">İptal</button>
+                      </div>
+                    }
                   </div>
                 }
               </div>
@@ -212,9 +231,12 @@ export class AdminComponent implements OnInit {
   papers: AcademicPaper[] = [];
 
   newProject: any = { titleTr: '', titleEn: '', descriptionTr: '', descriptionEn: '', category: '', techStack: '', githubUrl: '', liveUrl: '', year: 2026 };
-  newSkill: any = { name: '', category: '' };
+  newSkill: any = { name: '', category: '' }; // Başlangıçta boş, 'Kategori Seçin' varsayılan olarak görünecek
   newEducation: any = { schoolNameTr: '', schoolNameEn: '', departmentTr: '', departmentEn: '', startYear: null, endYear: null, isExchange: false };
   newPaper: any = { titleTr: '', titleEn: '', abstractTr: '', abstractEn: '', doiNumber: '', journalName: '', status: '', coAuthors: '' };
+
+  // Güncelleme mekanizması için state yönetimi
+  editingSkill: Skill | null = null;
 
   constructor(
     private projectService: ProjectService,
@@ -251,6 +273,29 @@ export class AdminComponent implements OnInit {
     this.skillService.createSkill(this.newSkill).subscribe(() => {
       this.loadData();
       this.newSkill = { name: '', category: '' };
+    });
+  }
+
+  // YETENEK DÜZENLEME METOTLARI
+  startEditSkill(skill: Skill) {
+    this.editingSkill = { ...skill }; // Referansı bozmamak için kopya ile çalışılır
+  }
+
+  cancelEditSkill() {
+    this.editingSkill = null;
+  }
+
+  saveEditSkill() {
+    if (!this.editingSkill) return;
+    this.skillService.updateSkill(this.editingSkill.id, this.editingSkill).subscribe({
+      next: () => {
+        this.loadData();
+        this.editingSkill = null;
+      },
+      error: (err) => {
+        console.error('Güncelleme hatası:', err);
+        alert('Güncelleme başarısız: ' + JSON.stringify(err));
+      }
     });
   }
 

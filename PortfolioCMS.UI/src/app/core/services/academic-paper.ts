@@ -29,6 +29,9 @@ export class AcademicPaperService {
   createPaper(paper: Omit<AcademicPaper, 'id'>): Observable<AcademicPaper> { 
     return this.http.post<AcademicPaper>(this.apiUrl, paper); 
   }
+  updatePaper(id: number, paper: Partial<AcademicPaper>): Observable<AcademicPaper> {
+  return this.http.put<AcademicPaper>(`${this.apiUrl}/${id}`, paper);
+}
   
   deletePaper(id: number): Observable<void> { 
     return this.http.delete<void>(`${this.apiUrl}/${id}`); 

@@ -1,28 +1,51 @@
 <div class="min-h-screen bg-ink text-paper">
+
+  <!-- MASAÜSTÜ NAV (md ve üzeri) -->
+  <nav class="nav-desktop pointer-events-auto fixed inset-x-0 top-0 z-30 hidden items-center justify-between border-b border-paper/10 bg-ink/70 px-10 py-5 text-xs uppercase tracking-[0.18em] text-paper/70 backdrop-blur md:flex">
+    <a href="#hero" class="font-display text-sm normal-case tracking-normal text-paper transition hover:text-coral">Atakan Özçelebi</a>
+    <div class="flex items-center gap-7">
+      <a href="#about" class="nav-link">{{ languageService.language() === 'tr' ? 'Hakkımda' : 'About' }}</a>
+      <a href="#projects" class="nav-link">{{ languageService.language() === 'tr' ? 'Projeler' : 'Projects' }}</a>
+      <a href="#skills" class="nav-link">{{ languageService.language() === 'tr' ? 'Yetenekler' : 'Skills' }}</a>
+      <a href="#education" class="nav-link">{{ languageService.language() === 'tr' ? 'Eğitim' : 'Education' }}</a>
+      <a href="#papers" class="nav-link">{{ languageService.language() === 'tr' ? 'Akademik Yayınlar' : 'Publications' }}</a>
+      <a href="#contact" class="nav-link">{{ languageService.language() === 'tr' ? 'İletişim' : 'Contact' }}</a>
+      <a routerLink="/login" class="nav-link text-lime">Admin ↗</a>
+      <button type="button" class="language-toggle cursor-pointer" (click)="languageService.toggle()" [attr.aria-label]="languageService.language() === 'tr' ? 'Switch to English' : 'Türkçeye geç'">{{ languageService.language() === 'tr' ? 'EN' : 'TR' }}</button>
+    </div>
+  </nav>
+
+  <!-- MOBİL HAMBURGER (sadece md altında görünür) -->
   <button
     type="button"
-    class="fixed left-5 top-5 z-50 grid size-12 place-items-center border border-paper/20 bg-ink/80 text-paper backdrop-blur transition hover:border-lime hover:text-lime md:left-8 md:top-8"
+    class="fixed left-5 top-5 z-50 grid size-12 place-items-center border border-paper/20 bg-ink/80 text-paper backdrop-blur transition hover:border-lime hover:text-lime md:hidden"
     [attr.aria-expanded]="menuOpen"
     aria-label="Menüyü aç"
     (click)="menuOpen = !menuOpen"
   >
     <span class="sr-only">Menü</span>
-    <span class="grid gap-1.5">
+    <span class="hamburger-lines" [class.hamburger-open]="menuOpen">
       <span class="block h-px w-5 bg-current"></span>
       <span class="block h-px w-5 bg-current"></span>
       <span class="block h-px w-5 bg-current"></span>
     </span>
   </button>
 
+  <!-- MOBİL DİL TOGGLE (masaüstü nav'da zaten var, mobilde ayrı gösteriliyor) -->
+  <header class="absolute right-5 top-5 z-20 text-xs uppercase tracking-[0.18em] text-paper/60 md:hidden">
+    <button type="button" class="language-toggle cursor-pointer" (click)="languageService.toggle()" [attr.aria-label]="languageService.language() === 'tr' ? 'Switch to English' : 'Türkçeye geç'">{{ languageService.language() === 'tr' ? 'EN' : 'TR' }}</button>
+  </header>
+
+  <!-- MOBİL OFF-CANVAS MENÜ (sadece md altında) -->
   <div
-    class="fixed inset-0 z-40 bg-ink/70 backdrop-blur-sm transition-opacity"
+    class="fixed inset-0 z-40 bg-ink/70 backdrop-blur-sm transition-opacity md:hidden"
     [class.pointer-events-none]="!menuOpen"
     [class.opacity-0]="!menuOpen"
     (click)="closeMenu()"
   ></div>
 
   <aside
-    class="fixed inset-y-0 left-0 z-40 flex w-full max-w-xs flex-col justify-between border-r border-paper/10 bg-[#1a1d23] px-8 py-28 text-paper transition-transform duration-500"
+    class="fixed inset-y-0 left-0 z-40 flex w-full max-w-xs flex-col justify-between border-r border-paper/10 bg-[#1a1d23] px-8 py-28 text-paper transition-transform duration-500 md:hidden"
     [class.-translate-x-full]="!menuOpen"
     aria-label="Ana menü"
   >
@@ -38,10 +61,6 @@
     </nav>
     <div class="text-xs uppercase tracking-[0.2em] text-paper/40">{{ languageService.language() === 'tr' ? 'Portfolyo' : 'Portfolio' }} / 2026</div>
   </aside>
-
-  <header class="absolute right-5 top-5 z-20 text-xs uppercase tracking-[0.18em] text-paper/60 md:right-8 md:top-8">
-    <button type="button" class="language-toggle cursor-pointer" (click)="languageService.toggle()" [attr.aria-label]="languageService.language() === 'tr' ? 'Switch to English' : 'Türkçeye geç'">{{ languageService.language() === 'tr' ? 'EN' : 'TR' }}</button>
-  </header>
 
   <main>
     <router-outlet></router-outlet>
