@@ -11,9 +11,9 @@ export interface Project {
   descriptionEn: string;
   category: string;
   techStack: string;
-  githubUrl: string;
-  liveUrl: string;
-  imageUrl: string;
+  githubUrl?: string;
+  liveUrl?: string;
+  imageUrl?: string;
   year?: number;
 }
 
