@@ -2,12 +2,9 @@
 
 A full-stack portfolio CMS built with **.NET 10** and **Angular 22**. The public site showcases projects, skills, education, and academic publications, while a JWT-protected admin panel allows full content management (CRUD) without touching the database directly.
 
-**🌐 Live demo:** _coming soon_
-**📄 Resume:** _download link on the site_
-
 ---
 
-## ✨ Features
+## Features
 
 - **Public portfolio site** — Projects, Skills, Education, and Academic Papers sections, fully data-driven from the backend
 - **JWT authentication** — secure admin login with role claims, token-based API access
@@ -18,7 +15,7 @@ A full-stack portfolio CMS built with **.NET 10** and **Angular 22**. The public
 - **Responsive design** — Tailwind CSS, mobile-first layout
 - **CV download** — one-click resume download served as a static file
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 **Backend**
 - .NET 10 / ASP.NET Core Web API
@@ -33,7 +30,7 @@ A full-stack portfolio CMS built with **.NET 10** and **Angular 22**. The public
 - Tailwind CSS
 - RxJS
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 PortfolioCMS.API      → Controllers, JWT config, CORS, exception handling
@@ -45,7 +42,7 @@ PortfolioCMS.UI       → Angular 22 frontend (public site + admin panel)
 
 The backend follows a generic repository/service pattern (`IGenericRepository<T>`, `IService<T>`), so each new entity (Project, Skill, Education, Academic Paper) plugs into the same CRUD pipeline with minimal boilerplate.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -98,7 +95,7 @@ POST /api/Auth/setup
 }
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── PortfolioCMS.API/          # Web API layer
@@ -109,20 +106,20 @@ POST /api/Auth/setup
 └── PortfolioCMS.slnx          # Solution file
 ```
 
-## 🔒 Security Notes
+## Security Notes
 
 - Passwords are hashed before storage, never sent or stored in plain text
 - JWT tokens include a 2-hour expiration and role-based claims
 - CORS origins are configured via `appsettings.json`, not hardcoded
 - The `/setup` endpoint is restricted to the Development environment and only runs once (blocked if an admin already exists)
 
-## 📌 Roadmap
+## Roadmap
 
-- [ ] Automated tests (backend + frontend)
-- [ ] CI/CD pipeline (GitHub Actions)
-- [ ] Azure deployment (App Service + Static Web Apps + Azure SQL)
+- Automated tests (backend + frontend)
+- CI/CD pipeline (GitHub Actions)
+- Azure deployment (App Service + Static Web Apps + Azure SQL)
 
-## 👤 Author
+## Author
 
 **Atakan Özçelebi**
 Computer Engineer 
@@ -130,6 +127,6 @@ Computer Engineer
 - GitHub: [@oemzzz](https://github.com/oemzzz)
 - LinkedIn: [linkedin.com/in/atakan-ozcelebi](https://linkedin.com/in/atakan-ozcelebi)
 
-## 📄 License
+## License
 
 This project is open source and available for reference. Feel free to explore the code.
