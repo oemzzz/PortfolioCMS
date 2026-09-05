@@ -13,7 +13,6 @@
   </div>
   <section id="hero" appReveal class="section-wrap hero-section relative flex min-h-screen items-center">
     <div class="editorial-grid absolute inset-0 opacity-45"></div>
-    <div class="section-number absolute right-6 top-32 md:right-12">01 / 07</div>
     <div class="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-32 md:px-16">
       <h1 class="max-w-5xl font-display text-[clamp(4rem,12vw,10.5rem)] leading-[0.86] tracking-[-0.04em] text-paper">
         Merhaba,<br />ben <span class="text-coral">Atakan.</span>
@@ -38,7 +37,11 @@
 
   <section id="about" appReveal class="section-wrap about-section reveal-section">
     <div class="mx-auto max-w-7xl px-6 py-28 md:px-16 md:py-40">
-      <div class="section-heading"><span>02 / {{ language() === 'tr' ? 'Hakkımda' : 'About' }}</span><span class="heading-line"></span></div>
+      <div class="section-heading">
+        <span class="section-heading-title">{{ language() === 'tr' ? 'Hakkımda' : 'About' }}</span>
+        <span class="heading-line"></span>
+        <span class="heading-meta">{{ language() === 'tr' ? 'Kim olduğum' : 'Who I am' }}</span>
+      </div>
       <div class="mt-14 grid gap-5 md:grid-cols-12">
         <article class="bento-card bento-large md:col-span-7">
           <span class="card-kicker">{{ language() === 'tr' ? 'Kısaca ben' : 'A little context' }}</span>
@@ -48,13 +51,9 @@
           <span class="card-kicker">{{ language() === 'tr' ? 'Şu anda' : 'Currently' }}</span>
           <p class="mt-8 text-3xl leading-tight text-ink">{{ language() === 'tr' ? 'Bilgisayar mühendisliği mezunuyum. Backend odaklı .NET pozisyonları arıyor, arada makine öğrenmesi üzerine yayın çıkarıyorum.' : 'I am a computer engineering graduate, seeking backend-focused .NET roles while publishing research in machine learning.' }}</p>
         </article>
-        <article class="bento-card md:col-span-4">
+        <article class="bento-card md:col-span-12">
           <span class="card-kicker">{{ language() === 'tr' ? 'Odak' : 'Focus' }}</span>
-          <p class="mt-8 text-xl leading-relaxed text-paper/70">{{ language() === 'tr' ? 'Sürekli öğrenerek kendimi geliştirmek ve her projede daha iyi bir mühendis olmak.' : 'Continuously learning and becoming a better engineer with every project.' }}</p>
-        </article>
-        <article class="bento-card md:col-span-8">
-          <span class="card-kicker">{{ language() === 'tr' ? 'Ekranın ötesinde' : 'Beyond the screen' }}</span>
-          <p class="mt-8 max-w-2xl font-display text-4xl leading-tight text-paper md:text-5xl">{{ language() === 'tr' ? 'Bir dönem Polonya\'da okudum, İngilizce çalıştım — farklı bir sistemde çalışabilmek beni bir mühendis olarak da değiştirdi.' : 'I studied a semester in Poland, in English — working within a different system changed how I approach engineering.' }}</p>
+          <p class="mt-8 max-w-2xl text-xl leading-relaxed text-paper/70">{{ language() === 'tr' ? 'Sürekli öğrenerek kendimi geliştirmek ve her projede daha iyi bir mühendis olmak.' : 'Continuously learning and becoming a better engineer with every project.' }}</p>
         </article>
       </div>
     </div>
@@ -62,21 +61,30 @@
 
   <section id="projects" appReveal class="section-wrap projects-section reveal-section">
     <div class="mx-auto max-w-7xl px-6 py-28 md:px-16 md:py-40">
-      <div class="section-heading"><span>03 / {{ language() === 'tr' ? 'Projeler' : 'Projects' }}</span><span class="heading-line"></span><span class="heading-meta">{{ language() === 'tr' ? 'Seçili çalışmalar' : 'Selected work' }}</span></div>
+      <div class="section-heading">
+        <span class="section-heading-title">{{ language() === 'tr' ? 'Projeler' : 'Projects' }}</span>
+        <span class="heading-line"></span>
+        <span class="heading-meta">{{ language() === 'tr' ? 'Seçili çalışmalar' : 'Selected work' }}</span>
+      </div>
       <div class="mt-14 grid gap-5 md:grid-cols-2">
         @if (isLoading) {
           <div class="bento-card animate-pulse text-paper/50">Projeler yükleniyor...</div>
         } @else {
           @for (project of projects; track project.id; let index = $index) {
-            <article appReveal class="project-card" [class.project-featured]="index === 0">
+            <article appReveal class="project-card" [class.project-featured]="index === 0" [style.grid-column]="isLastOdd(index) ? 'span 2' : 'span 1'">
               <div class="project-index">0{{ index + 1 }}</div>
               <div class="mt-20">
-                <p class="card-kicker text-lime">{{ project.category }}</p>
+                <p class="card-kicker project-kicker text-lime">{{ project.category }}</p>
                 <h3 class="mt-4 font-display text-4xl leading-none text-paper md:text-5xl">{{ language() === 'tr' ? project.titleTr : project.titleEn }}</h3>
                 <p class="mt-5 max-w-lg leading-relaxed text-paper/60">{{ language() === 'tr' ? project.descriptionTr : project.descriptionEn }}</p>
                 <div class="mt-8 flex flex-wrap gap-2"><span class="tag">{{ project.techStack }}</span></div>
               </div>
-              <div class="mt-10 flex gap-5 text-sm"><a [href]="project.githubUrl" target="_blank" rel="noopener" class="text-lime transition hover:text-paper">GitHub ↗</a><a [href]="project.liveUrl" target="_blank" rel="noopener" class="text-paper/60 transition hover:text-coral">Daha fazlasını gör ↗</a></div>
+              <div class="mt-10 flex gap-5 text-sm">
+                <a [href]="project.githubUrl" target="_blank" rel="noopener" class="text-lime transition hover:text-paper">GitHub ↗</a>
+                @if (project.liveUrl) {
+                  <a [href]="project.liveUrl" target="_blank" rel="noopener" class="text-paper/60 transition hover:text-coral">{{ language() === 'tr' ? 'Canlı Demo' : 'Live Demo' }} ↗</a>
+                }
+              </div>
             </article>
           } @empty {
             <div class="bento-card text-paper/50">Yakında yeni projeler eklenecek.</div>
@@ -88,10 +96,14 @@
 
   <section id="skills" appReveal class="section-wrap skills-section reveal-section">
     <div class="mx-auto max-w-7xl px-6 py-28 md:px-16 md:py-40">
-      <div class="section-heading"><span>04 / {{ language() === 'tr' ? 'Yetenekler' : 'Skills' }}</span><span class="heading-line"></span></div>
-      <div class="mt-14 grid gap-5 md:grid-cols-2 auto-fit">
+      <div class="section-heading">
+        <span class="section-heading-title">{{ language() === 'tr' ? 'Yetenekler' : 'Skills' }}</span>
+        <span class="heading-line"></span>
+        <span class="heading-meta">{{ language() === 'tr' ? 'Neyle çalışıyorum' : 'What I work with' }}</span>
+      </div>
+      <div class="mt-14 space-y-5">
         @for (group of skillsByCategory; track group.category) {
-          <div class="bento-card skill-category-card" [style.grid-column]="group.skills.length > 5 ? 'span 2' : 'span 1'">
+          <div class="bento-card skill-category-card">
             <span class="card-kicker">{{ group.category }}</span>
             <div class="mt-8 flex flex-wrap gap-3">
               @for (skill of group.skills; track skill.id) {
@@ -108,7 +120,11 @@
 
   <section id="education" appReveal class="section-wrap education-section reveal-section">
     <div class="mx-auto max-w-7xl px-6 py-28 md:px-16 md:py-40">
-      <div class="section-heading"><span>05 / {{ language() === 'tr' ? 'Eğitim' : 'Education' }}</span><span class="heading-line"></span></div>
+      <div class="section-heading">
+        <span class="section-heading-title">{{ language() === 'tr' ? 'Eğitim' : 'Education' }}</span>
+        <span class="heading-line"></span>
+        <span class="heading-meta">{{ language() === 'tr' ? 'Akademik yolculuğum' : 'My academic path' }}</span>
+      </div>
       <div class="mt-14 space-y-4">
         @for (edu of educations; track edu.id) {
           <article class="education-row">
@@ -130,23 +146,37 @@
 
   <section id="papers" appReveal class="section-wrap papers-section reveal-section">
     <div class="mx-auto max-w-7xl px-6 py-28 md:px-16 md:py-40">
-      <div class="section-heading"><span>06 / {{ language() === 'tr' ? 'Akademik Çalışmalar' : 'Academic Work' }}</span><span class="heading-line"></span></div>
-      <div class="mt-14 grid gap-5 md:grid-cols-2">
+      <div class="section-heading">
+        <span class="section-heading-title">{{ language() === 'tr' ? 'Akademik Çalışmalar' : 'Academic Work' }}</span>
+        <span class="heading-line"></span>
+        <span class="heading-meta">{{ language() === 'tr' ? 'Araştırma ilgi alanlarım' : 'My research interests' }}</span>
+      </div>
+      <div class="mt-14">
         @for (paper of papers; track paper.id) {
-          <article class="bento-card">
-            <span class="card-kicker">{{ paper.journalName }} · {{ paper.status }}</span>
-            <h3 class="mt-8 font-display text-3xl leading-tight text-paper">{{ language() === 'tr' ? paper.titleTr : paper.titleEn }}</h3>
-            <p class="mt-5 text-lg leading-relaxed text-paper/60">{{ language() === 'tr' ? paper.abstractTr : paper.abstractEn }}</p>
-            @if (paper.coAuthors) {
-              <p class="mt-4 text-sm text-paper/40">{{ paper.coAuthors }}</p>
-            }
-            @if (paper.doiNumber) {
-              <a [href]="'https://doi.org/' + paper.doiNumber" target="_blank" rel="noopener" class="mt-8 inline-block text-lime transition hover:text-paper">DOI {{ paper.doiNumber }} ↗</a>
-            }
+          <article class="paper-row">
+            <div class="paper-meta">
+              <span class="card-kicker">{{ paper.journalName }}</span>
+              <span class="paper-status">{{ paper.status }}</span>
+            </div>
+            <div class="paper-body">
+              <h3 class="font-display text-3xl leading-tight text-paper md:text-4xl">{{ language() === 'tr' ? paper.titleTr : paper.titleEn }}</h3>
+              <p class="mt-5 max-w-3xl text-lg leading-relaxed text-paper/60">{{ language() === 'tr' ? paper.abstractTr : paper.abstractEn }}</p>
+              @if (paper.coAuthors) {
+                <p class="mt-4 text-sm text-paper/40">{{ paper.coAuthors }}</p>
+              }
+              @if (paper.doiNumber) {
+                <a [href]="'https://doi.org/' + paper.doiNumber" target="_blank" rel="noopener" class="mt-6 inline-block text-lime transition hover:text-paper">{{ paper.doiNumber }} ↗</a>
+              }
+            </div>
           </article>
         } @empty {
-          <article class="bento-card"><span class="card-kicker">{{ language() === 'tr' ? 'Yakında' : 'Coming soon' }}</span><p class="mt-8 font-display text-4xl leading-tight text-lime">{{ language() === 'tr' ? 'Yeni araştırmalar,' : 'New research,' }}<br />{{ language() === 'tr' ? 'aynı merak.' : 'same curiosity.' }}</p></article>
-          <article class="bento-card"><span class="card-kicker">{{ language() === 'tr' ? 'Yayın dizini' : 'Publication index' }}</span><p class="mt-8 text-lg leading-relaxed text-paper/60">{{ language() === 'tr' ? 'DOI, dergi ve yayın detayları admin panelinden eklendiğinde burada görünecek.' : 'DOI, journal, and publication details will appear here once added from the admin panel.' }}</p></article>
+          <article class="paper-row">
+            <div class="paper-meta"><span class="card-kicker">{{ language() === 'tr' ? 'Yakında' : 'Coming soon' }}</span></div>
+            <div class="paper-body">
+              <p class="font-display text-3xl leading-tight text-lime">{{ language() === 'tr' ? 'Yeni araştırmalar, aynı merak.' : 'New research, same curiosity.' }}</p>
+              <p class="mt-4 text-lg leading-relaxed text-paper/60">{{ language() === 'tr' ? 'DOI, dergi ve yayın detayları admin panelinden eklendiğinde burada görünecek.' : 'DOI, journal, and publication details will appear here once added from the admin panel.' }}</p>
+            </div>
+          </article>
         }
       </div>
     </div>
@@ -154,7 +184,11 @@
 
   <section id="contact" appReveal class="section-wrap contact-section reveal-section">
     <div class="mx-auto max-w-7xl px-6 py-28 md:px-16 md:py-40">
-      <div class="section-heading"><span>07 / {{ language() === 'tr' ? 'İletişim' : 'Contact' }}</span><span class="heading-line"></span></div>
+      <div class="section-heading">
+        <span class="section-heading-title">{{ language() === 'tr' ? 'İletişim' : 'Contact' }}</span>
+        <span class="heading-line"></span>
+        <span class="heading-meta">{{ language() === 'tr' ? 'Kanallar' : 'Channels' }}</span>
+      </div>
       <div class="mt-14 grid items-end gap-12 md:grid-cols-2">
         <div>
           <p class="card-kicker text-coral">{{ language() === 'tr' ? 'Bir sonraki adım' : 'Next step' }}</p>

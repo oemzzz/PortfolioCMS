@@ -196,8 +196,6 @@
 .papers-section { background: linear-gradient(135deg, rgba(27, 29, 36, 0.18) 0%, rgba(36, 32, 38, 0.2) 100%); }
 .contact-section { background: linear-gradient(135deg, rgba(33, 31, 29, 0.22) 0%, rgba(23, 25, 31, 0.26) 100%); }
 
-.section-number,
-.section-heading,
 .card-kicker,
 .project-index {
   font-size: 0.7rem;
@@ -205,10 +203,46 @@
   text-transform: uppercase;
 }
 
-.section-number { color: rgba(240, 238, 231, 0.4); }
-.section-heading { display: flex; align-items: center; gap: 1rem; color: #c6f36b; }
+.project-kicker {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.section-heading-title {
+  position: relative;
+  padding-left: 1.25rem;
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: #f0eee7;
+}
+
+.section-heading-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.4em;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: #c6f36b;
+}
+
 .heading-line { height: 1px; flex: 1; background: rgba(240, 238, 231, 0.18); }
-.heading-meta { color: rgba(240, 238, 231, 0.4); }
+
+.heading-meta {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240, 238, 231, 0.45);
+}
 
 .bento-card,
 .project-card {
@@ -227,11 +261,38 @@
 .project-featured { background: #2b303a; }
 .project-index { color: rgba(240, 238, 231, 0.4); }
 .tag,
-.skill-pill { display: inline-flex; border: 1px solid rgba(232, 197, 71, 0.5); padding: 0.45rem 0.7rem; font-size: 0.75rem; color: #e8c547; }
+.skill-pill { display: inline-flex; align-items: center; border: 1px solid rgba(232, 197, 71, 0.5); padding: 0.45rem 0.7rem; font-size: 0.75rem; color: #e8c547; }
 .skill-pill { padding: 0.75rem 1rem; font-size: 1rem; transition: background 250ms ease, color 250ms ease; }
 .skill-pill:hover { background: #e8c547; color: #101216; }
 
+.skill-category-card {
+  min-height: auto;
+  height: auto;
+}
+
 .education-row { display: grid; grid-template-columns: 10rem 1fr auto; gap: 2rem; align-items: center; border-top: 1px solid rgba(240, 238, 231, 0.14); padding: 1.5rem 0; }
+
+.paper-row {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  gap: 2rem;
+  border-top: 1px solid rgba(240, 238, 231, 0.14);
+  padding: 2rem 0;
+}
+
+.paper-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.paper-status {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(240, 238, 231, 0.45);
+}
+
 .button-primary,
 .button-quiet { display: inline-flex; align-items: center; gap: 1rem; padding: 0.9rem 1.2rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; transition: background 250ms ease, color 250ms ease; }
 .button-primary { background: #e8c547; color: #101216; }
@@ -249,14 +310,11 @@
 @media (max-width: 640px) {
   .education-row { grid-template-columns: 1fr; gap: 0.5rem; }
   .education-row .tag { margin-left: 0; width: fit-content; }
+  .paper-row { grid-template-columns: 1fr; gap: 0.75rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .cursor-blink { animation: none; }
   .bento-card, .project-card, .reveal-ready, .ambient-mesh, .ambient-ribbon, .ambient-canvas, .ambient-glow, .ambient-scan, .portfolio-shell::before { transition: none; animation: none; }
   .reveal-ready { opacity: 1; transform: none; }
-}
-.skill-category-card {
-  min-height: auto;
-  height: auto;
 }

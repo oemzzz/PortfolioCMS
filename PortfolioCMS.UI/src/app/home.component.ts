@@ -31,7 +31,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   isLoading = true;
   private typewriterTimer?: ReturnType<typeof setTimeout>;
   private typewriterIndex = 0;
-  private readonly roles = ['Computer Engineer', 'Full Stack .NET Developer', 'ML Researcher'];
+  private readonly roles = ['Computer Engineer', 'Full Stack .NET Developer', 'DL/ML Researcher'];
+  private readonly skillCategoryOrder = ['Backend', 'Architecture & Practices', 'Database', 'Frontend', 'Tools', 'Data Science'];
 
   constructor(
     private projectService: ProjectService,
@@ -47,7 +48,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       if (!groups.has(skill.category)) groups.set(skill.category, []);
       groups.get(skill.category)!.push(skill);
     }
-    return Array.from(groups.entries()).map(([category, skills]) => ({ category, skills }));
+    return this.skillCategoryOrder
+      .filter(category => groups.has(category))
+      .map(category => ({ category, skills: groups.get(category)! }));
+  }
+
+  isLastOdd(index: number): boolean {
+    return this.projects.length % 2 !== 0 && index === this.projects.length - 1;
   }
 
   ngOnInit(): void {
