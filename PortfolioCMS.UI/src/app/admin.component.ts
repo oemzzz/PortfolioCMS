@@ -7,6 +7,7 @@ import { Skill, SkillService } from './core/services/skill';
 import { Education, EducationService } from './core/services/education';
 import { AcademicPaper, AcademicPaperService } from './core/services/academic-paper';
 import { AuthService } from './core/services/auth';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -207,7 +208,8 @@ import { AuthService } from './core/services/auth';
                 <input type="text" [(ngModel)]="formPaper.titleTr" name="titleTr" placeholder="Makale Başlığı (TR)" class="bg-[#0a0c10] border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400" required>
                 <input type="text" [(ngModel)]="formPaper.titleEn" name="titleEn" placeholder="Makale Başlığı (EN)" class="bg-[#0a0c10] border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400" required>
                 <input type="text" [(ngModel)]="formPaper.journalName" name="journalName" placeholder="Dergi / Konferans Adı" class="bg-[#0a0c10] border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400" required>
-                <input type="text" [(ngModel)]="formPaper.doiNumber" name="doiNumber" placeholder="DOI Numarası" class="bg-[#0a0c10] border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400" required>
+                <input type="text" [(ngModel)]="formPaper.doiNumber" name="doiNumber" placeholder="DOI Numarası" class="bg-[#0a0c10] border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400">
+                <input type="text" [(ngModel)]="formPaper.publishedDate" name="publishedDate" placeholder="Yayın Tarihi (Opsiyonel)" class="bg-[#0a0c10] border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400">
                 <input type="text" [(ngModel)]="formPaper.status" name="status" placeholder="Durum (Örn: Yayınlandı / Kabul Edildi)" class="bg-[#0a0c10] border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400" required>
                 <input type="text" [(ngModel)]="formPaper.coAuthors" name="coAuthors" placeholder="Diğer Yazarlar (Opsiyonel)" class="bg-[#0a0c10] border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400">
                 <textarea [(ngModel)]="formPaper.abstractTr" name="abstractTr" placeholder="Özet (TR)" rows="3" class="md:col-span-2 bg-[#0a0c10] border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400" required></textarea>
@@ -278,7 +280,8 @@ export class AdminComponent implements OnInit {
     private educationService: EducationService,
     private paperService: AcademicPaperService,
     private authService: AuthService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -430,5 +433,6 @@ export class AdminComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

@@ -35,6 +35,21 @@ namespace PortfolioCMS.API.Controllers
             return Ok(AcademicPaperMapper.ToDto(paper));
         }
 
+       [Authorize]
+       [HttpPut("{id}")]
+       public async Task<IActionResult> Update(int id, AcademicPaperDto dto)
+       {
+        if (id != dto.Id)
+        return BadRequest("Geçersiz işlem: URL ve veri ID'leri uyuşmuyor.");
+
+        var exists = await _service.AnyAsync(x => x.Id == id);
+        if (!exists) return NotFound();
+
+       var updatedPaper = AcademicPaperMapper.ToEntity(dto);
+       updatedPaper.Id = id;
+       await _service.UpdateAsync(updatedPaper);
+       return Ok(AcademicPaperMapper.ToDto(updatedPaper));
+}
         [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remove(int id)

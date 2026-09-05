@@ -49,22 +49,20 @@ namespace PortfolioCMS.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = newEducationDto.Id }, newEducationDto);
         }
 
-        [Authorize]
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, EducationDto educationDto)
-        {
-            if (id != educationDto.Id)
-            {
-                return BadRequest("Geçersiz işlem: URL ve veri ID'leri uyuşmuyor.");
-            }
+       [Authorize]
+       [HttpPut("{id}")]
+       public async Task<IActionResult> Update(int id, EducationDto educationDto)
+       {
+       if (id != educationDto.Id)
+        return BadRequest("Geçersiz işlem: URL ve veri ID'leri uyuşmuyor.");
 
-            var existingEducation = await _service.GetByIdAsync(id);
-            if (existingEducation == null) return NotFound();
+      var exists = await _service.AnyAsync(x => x.Id == id);
+       if (!exists) return NotFound();
 
-            var education = _mapper.ToEntity(educationDto);
-            await _service.UpdateAsync(education);
-            return NoContent();
-        }
+      var education = _mapper.ToEntity(educationDto);
+      await _service.UpdateAsync(education);
+      return NoContent();
+       }
 
         [Authorize]
         [HttpDelete("{id}")]

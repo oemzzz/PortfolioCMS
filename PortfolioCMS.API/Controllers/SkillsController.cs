@@ -52,19 +52,17 @@ namespace PortfolioCMS.API.Controllers
         [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, SkillDto skillDto)
-        {
-            if (id != skillDto.Id)
-            {
-                return BadRequest("Geçersiz işlem: URL ve veri ID'leri uyuşmuyor.");
-            }
+      {
+        if (id != skillDto.Id)
+        return BadRequest("Geçersiz işlem: URL ve veri ID'leri uyuşmuyor.");
 
-            var existingSkill = await _service.GetByIdAsync(id);
-            if (existingSkill == null) return NotFound();
+         var exists = await _service.AnyAsync(x => x.Id == id);
+         if (!exists) return NotFound();
 
-            var skill = _mapper.ToEntity(skillDto);
-            await _service.UpdateAsync(skill);
-            return NoContent();
-        }
+          var skill = _mapper.ToEntity(skillDto);
+          await _service.UpdateAsync(skill);
+          return NoContent();
+       }
 
         [Authorize]
         [HttpDelete("{id}")]

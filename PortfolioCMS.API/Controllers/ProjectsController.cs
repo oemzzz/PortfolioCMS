@@ -47,23 +47,20 @@ namespace PortfolioCMS.API.Controllers
             var newProjectDto = _mapper.ToDto(project);
             return CreatedAtAction(nameof(GetById), new { id = newProjectDto.Id }, newProjectDto);
         }
-        [Authorize] // Bu endpoint'e erişim için yetkilendirme gereklidir
-        [HttpPut("{id}")] // URL'den gelen ID'yi yakalayabilmesi için {id} eklendi
+        [Authorize]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, ProjectDto projectDto)
         {
-            // URL'deki ID ile gönderilen verideki ID eşleşmiyorsa güvenliği sağla
-            if (id != projectDto.Id) 
-            {
-                return BadRequest("Geçersiz işlem: URL ve veri ID'leri uyuşmuyor.");
-            }
+        if (id != projectDto.Id)
+        return BadRequest("Geçersiz işlem: URL ve veri ID'leri uyuşmuyor.");
 
-            var existingProject = await _service.GetByIdAsync(id);
-            if (existingProject == null) return NotFound();
+         var exists = await _service.AnyAsync(x => x.Id == id);
+         if (!exists) return NotFound();
 
-            var project = _mapper.ToEntity(projectDto);
-            await _service.UpdateAsync(project);
-            return NoContent();
-        }
+         var project = _mapper.ToEntity(projectDto);
+         await _service.UpdateAsync(project);
+         return NoContent();
+}
 
         [Authorize] // Bu endpoint'e erişim için yetkilendirme gereklidir
         [HttpDelete("{id}")]
