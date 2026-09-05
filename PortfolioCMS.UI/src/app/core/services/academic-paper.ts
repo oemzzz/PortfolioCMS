@@ -10,7 +10,7 @@ export interface AcademicPaper {
   abstractTr: string;
   abstractEn: string;
   doiNumber?: string;
-  journalName: string;
+  journalName?: string;
   status: string;
   coAuthors?: string;
   publishedDate?: string;
