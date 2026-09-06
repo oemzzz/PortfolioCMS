@@ -19,7 +19,7 @@
       </h1>
       <div class="mt-10 flex flex-col gap-6">
         <p class="max-w-xl text-lg leading-relaxed text-paper/65 md:text-xl">
-          {{ language() === 'tr' ? 'Yeni mezun bir bilgisayar mühendisiyim; .NET ve Angular ile uçtan uca ürünler geliştiriyorum, ağırlıklı olarak backend tarafında çalışıyor, arada da makine öğrenmesiyle araştırma yapıyorum.' : 'I am a newly graduated computer engineer; I build end-to-end products with .NET and Angular, with a backend-heavy focus, and research machine learning on the side.' }}
+          {{ language() === 'tr' ? 'Yeni mezun bir bilgisayar mühendisiyim; .NET ve Angular ile uçtan uca ürünler geliştiriyorum, makine öğrenmesiyle araştırmalar ve projeler yapıyorum.' : 'I am a newly graduated computer engineer; I build end-to-end products with .NET and Angular, and research and build projects in machine learning.' }}
         </p>
         <div class="min-h-[1.5rem] whitespace-nowrap font-mono text-xs text-paper/60 sm:text-sm">
           <span class="text-lime">&gt;</span> {{ typedRole }}<span class="cursor-blink text-coral">_</span>
@@ -45,15 +45,11 @@
       <div class="mt-14 grid gap-5 md:grid-cols-12">
         <article class="bento-card bento-large md:col-span-7">
           <span class="card-kicker">{{ language() === 'tr' ? 'Kısaca ben' : 'A little context' }}</span>
-          <h2 class="mt-12 max-w-xl font-display text-5xl leading-none text-paper md:text-7xl">{{ language() === 'tr' ? 'Katmanlı mimaride gerçek veri modelleri kuruyorum; bir yandan da ağ güvenliğinde makine öğrenmesi araştırıyorum.' : 'I build real data models in layered architectures, and research machine learning in network security on the side.' }}</h2>
+          <h2 class="mt-12 max-w-xl font-display text-2xl leading-snug text-paper md:text-4xl">{{ language() === 'tr' ? 'Kurumsal web uygulamalarını veritabanından kullanıcı arayüzüne kadar uçtan uca tasarlayan fullstack bir geliştiriciyim. Farklı teknoloji disiplinlerini bir araya getirmeyi seviyor; katmanlı mimarilerdeki yazılım pratiğimi, makine öğrenmesi projelerinden kazandığım veri odaklı bakış açısıyla birleştirerek disiplinler arası çözümler üretiyorum.' : 'A full-stack developer designing end-to-end enterprise web applications, from the database to the user interface. I thrive at the intersection of different technologies, delivering interdisciplinary solutions by combining my practical software experience in N-tier architectures with the data-driven perspective gained from machine learning projects.' }}</h2>
         </article>
         <article class="bento-card accent-card md:col-span-5">
-          <span class="card-kicker">{{ language() === 'tr' ? 'Şu anda' : 'Currently' }}</span>
-          <p class="mt-8 text-3xl leading-tight text-ink">{{ language() === 'tr' ? 'Bilgisayar mühendisliği mezunuyum. Backend odaklı .NET pozisyonları arıyor, arada makine öğrenmesi üzerine yayın çıkarıyorum.' : 'I am a computer engineering graduate, seeking backend-focused .NET roles while publishing research in machine learning.' }}</p>
-        </article>
-        <article class="bento-card md:col-span-12">
           <span class="card-kicker">{{ language() === 'tr' ? 'Odak' : 'Focus' }}</span>
-          <p class="mt-8 max-w-2xl text-xl leading-relaxed text-paper/70">{{ language() === 'tr' ? 'Sürekli öğrenerek kendimi geliştirmek ve her projede daha iyi bir mühendis olmak.' : 'Continuously learning and becoming a better engineer with every project.' }}</p>
+          <p class="mt-8 text-2xl leading-snug text-ink">{{ language() === 'tr' ? 'Sürekli öğrenmeye, yeni teknolojiler keşfetmeye ve modern mimarileri deneyimlemeye büyük bir tutku duyuyorum. Amacım her projede kendimi geliştirerek, attığım her adımda daha bilgili ve yüksek donanımlı bir mühendise dönüşmektir.' : 'I am passionate about continuous learning, discovering new technologies, and exploring modern architectures. My goal is to grow with every project, evolving into a more knowledgeable and highly skilled engineer with every step I take.' }}</p>
         </article>
       </div>
     </div>
