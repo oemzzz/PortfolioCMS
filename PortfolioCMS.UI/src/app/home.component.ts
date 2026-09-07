@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   language = this.languageService.language;
   emailCopied = false;
   scrollOffset = 0;
+  scrollProgress = 0;
   typedRole = '';
   isLoading = true;
   private typewriterTimer?: ReturnType<typeof setTimeout>;
@@ -91,6 +92,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   @HostListener('window:scroll')
   onWindowScroll(): void {
     this.scrollOffset = Math.min(window.scrollY * 0.22, 320);
+    
+    // Calculate scroll progress
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    this.scrollProgress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
   }
 
   async copyEmail(): Promise<void> {

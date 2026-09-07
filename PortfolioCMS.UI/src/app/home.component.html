@@ -1,4 +1,6 @@
 <div class="portfolio-shell overflow-hidden" [style.--scroll-offset.px]="scrollOffset">
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-bar" [style.width.%]="scrollProgress"></div>
   <div class="ambient-canvas" aria-hidden="true">
     <div class="ambient-glow ambient-glow-one"></div>
     <div class="ambient-glow ambient-glow-two"></div>
@@ -11,79 +13,120 @@
     <div class="ambient-scan"></div>
     <div class="ambient-noise"></div>
   </div>
-  <section id="hero" appReveal class="section-wrap hero-section relative flex min-h-screen items-center">
-    <div class="editorial-grid absolute inset-0 opacity-45"></div>
-    <div class="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-32 md:px-16">
-      <h1 class="max-w-5xl font-display text-[clamp(4rem,12vw,10.5rem)] leading-[0.86] tracking-[-0.04em] text-paper">
-        Merhaba,<br />ben <span class="text-coral">Atakan.</span>
-      </h1>
-      <div class="mt-10 flex flex-col gap-6">
-        <p class="max-w-xl text-lg leading-relaxed text-paper/65 md:text-xl">
-          {{ language() === 'tr' ? 'Yeni mezun bir bilgisayar mühendisiyim; .NET ve Angular ile uçtan uca ürünler geliştiriyorum, makine öğrenmesiyle araştırmalar ve projeler yapıyorum.' : 'I am a newly graduated computer engineer; I build end-to-end products with .NET and Angular, and research and build projects in machine learning.' }}
-        </p>
-        <div class="min-h-[1.5rem] whitespace-nowrap font-mono text-xs text-paper/60 sm:text-sm">
-          <span class="text-lime">&gt;</span> {{ typedRole }}<span class="cursor-blink text-coral">_</span>
+  
+  <section id="hero" appReveal class="section-wrap hero-section relative flex min-h-screen items-center py-16">
+    <div class="hero-mute-overlay absolute inset-0" aria-hidden="true"></div>
+    <div class="relative mx-auto w-full max-w-7xl px-6 pt-16 pb-12 md:px-16">
+      <div class="grid gap-12 lg:grid-cols-[1.2fr_1fr] items-center">
+        <div class="flex flex-col justify-center">
+          <h1 class="max-w-xl font-display text-[clamp(3.5rem,8vw,7.5rem)] leading-[0.9] tracking-[-0.04em] text-paper">
+            Merhaba,<br />ben <span class="text-purple-300">Atakan.</span>
+          </h1>
+          <div class="mt-6 flex flex-col gap-4">
+            <p class="max-w-lg text-lg leading-relaxed text-paper/65 md:text-xl">
+              {{ language() === 'tr' ? 'Yeni mezun bir bilgisayar mühendisiyim; .NET ve Angular ile uçtan uca ürünler geliştiriyorum, makine öğrenmesiyle araştırmalar ve projeler yapıyorum.' : 'I am a newly graduated computer engineer; I build end-to-end products with .NET and Angular, and research and build projects in machine learning.' }}
+            </p>
+            <div class="min-h-6 whitespace-nowrap font-mono text-xs text-paper/60 sm:text-sm">
+              <span class="text-emerald-400">&gt;</span> {{ typedRole }}<span class="cursor-blink text-purple-300">_</span>
+            </div>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-4 items-center">
+            <a href="/assets/cv.pdf" download class="button-primary">{{ language() === 'tr' ? 'CV indir' : 'Download CV' }} <span>↗</span></a>
+            <a href="#about" class="button-quiet">{{ language() === 'tr' ? 'Beni tanı' : 'Meet me' }} <span>↓</span></a>
+            <a href="#contact" class="contact-mini-button">{{ language() === 'tr' ? 'İletişime geç' : 'Get in touch' }} <span>→</span></a>
+          </div>
+          
+          <div class="scroll-indicator-wrap text-xs uppercase tracking-[0.2em] text-paper/40">
+            <div class="scroll-indicator">
+              <div class="scroll-arrow">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            <span>{{ language() === 'tr' ? 'Keşfetmek için kaydır' : 'Scroll to explore' }}</span>
+          </div>
         </div>
-      </div>
-      <div class="mt-12 flex flex-wrap gap-4">
-        <a href="/assets/cv.pdf" download class="button-primary">{{ language() === 'tr' ? 'CV’yi indir' : 'Download CV' }} <span>↗</span></a>
-        <a href="#about" class="button-quiet">{{ language() === 'tr' ? 'Beni tanı' : 'Meet me' }} <span>↓</span></a>
-      </div>
-      <div class="mt-24 flex items-center gap-4 text-xs uppercase tracking-[0.2em] text-paper/40">
-        <span class="h-8 w-px bg-paper/30"></span> {{ language() === 'tr' ? 'Keşfetmek için kaydır' : 'Scroll to explore' }}
+        
+        <div class="w-full flex justify-center lg:justify-end">
+          <div class="hero-photo-container">
+            <div class="hero-photo-wrapper">
+              <img src="/assets/profile.png" alt="Atakan Özçelebi" class="hero-photo-img" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="about" appReveal class="section-wrap about-section reveal-section">
-    <div class="mx-auto max-w-7xl px-6 py-28 md:px-16 md:py-40">
+    <div class="mx-auto max-w-7xl px-6 py-14 md:px-16 md:py-20">
       <div class="section-heading">
         <span class="section-heading-title">{{ language() === 'tr' ? 'Hakkımda' : 'About' }}</span>
         <span class="heading-line"></span>
         <span class="heading-meta">{{ language() === 'tr' ? 'Kim olduğum' : 'Who I am' }}</span>
       </div>
-      <div class="mt-14 grid gap-5 md:grid-cols-12">
+      <div class="mt-10 grid gap-5 md:grid-cols-12">
         <article class="bento-card bento-large md:col-span-7">
           <span class="card-kicker">{{ language() === 'tr' ? 'Kısaca ben' : 'A little context' }}</span>
-          <h2 class="mt-12 max-w-xl font-display text-2xl leading-snug text-paper md:text-4xl">{{ language() === 'tr' ? 'Kurumsal web uygulamalarını veritabanından kullanıcı arayüzüne kadar uçtan uca tasarlayan fullstack bir geliştiriciyim. Farklı teknoloji disiplinlerini bir araya getirmeyi seviyor; katmanlı mimarilerdeki yazılım pratiğimi, makine öğrenmesi projelerinden kazandığım veri odaklı bakış açısıyla birleştirerek disiplinler arası çözümler üretiyorum.' : 'A full-stack developer designing end-to-end enterprise web applications, from the database to the user interface. I thrive at the intersection of different technologies, delivering interdisciplinary solutions by combining my practical software experience in N-tier architectures with the data-driven perspective gained from machine learning projects.' }}</h2>
+          <h2 class="mt-8 max-w-xl font-display text-xl leading-snug text-paper md:text-3xl">{{ language() === 'tr' ? 'Kurumsal web uygulamalarını veritabanından kullanıcı arayüzüne kadar uçtan uca tasarlayan fullstack bir geliştiriciyim. Farklı teknoloji disiplinlerini bir araya getirmeyi seviyor; katmanlı mimarilerdeki yazılım pratiğimi, makine öğrenmesi projelerinden kazandığım veri odaklı bakış açısıyla birleştirerek disiplinler arası çözümler üretiyorum.' : 'A full-stack developer designing end-to-end enterprise web applications, from the database to the user interface. I thrive at the intersection of different technologies, delivering interdisciplinary solutions by combining my practical software experience in N-tier architectures with the data-driven perspective gained from machine learning projects.' }}</h2>
         </article>
         <article class="bento-card accent-card md:col-span-5">
           <span class="card-kicker">{{ language() === 'tr' ? 'Odak' : 'Focus' }}</span>
-          <p class="mt-8 text-2xl leading-snug text-ink">{{ language() === 'tr' ? 'Sürekli öğrenmeye, yeni teknolojiler keşfetmeye ve modern mimarileri deneyimlemeye büyük bir tutku duyuyorum. Amacım her projede kendimi geliştirerek, attığım her adımda daha bilgili ve yüksek donanımlı bir mühendise dönüşmektir.' : 'I am passionate about continuous learning, discovering new technologies, and exploring modern architectures. My goal is to grow with every project, evolving into a more knowledgeable and highly skilled engineer with every step I take.' }}</p>
+          <p class="mt-6 text-xl leading-snug text-ink">{{ language() === 'tr' ? 'Sürekli öğrenmeye, yeni teknolojiler keşfetmeye ve modern mimarileri deneyimlemeye büyük bir tutku duyuyorum. Amacım her projede kendimi geliştirerek, attığım her adımda daha bilgili ve yüksek donanımlı bir mühendis olmak.' : 'I am passionate about continuous learning, discovering new technologies, and exploring modern architectures. My goal is to grow with every project, evolving into a more knowledgeable and highly skilled engineer with every step I take.' }}</p>
         </article>
       </div>
     </div>
   </section>
 
   <section id="projects" appReveal class="section-wrap projects-section reveal-section">
-    <div class="mx-auto max-w-7xl px-6 py-28 md:px-16 md:py-40">
+    <div class="mx-auto max-w-7xl px-6 py-14 md:px-16 md:py-20">
       <div class="section-heading">
         <span class="section-heading-title">{{ language() === 'tr' ? 'Projeler' : 'Projects' }}</span>
         <span class="heading-line"></span>
         <span class="heading-meta">{{ language() === 'tr' ? 'Seçili çalışmalar' : 'Selected work' }}</span>
       </div>
-      <div class="mt-14 grid gap-5 md:grid-cols-2">
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
         @if (isLoading) {
-          <div class="bento-card animate-pulse text-paper/50">Projeler yükleniyor...</div>
+          <div class="skeleton-card">
+            <div class="skeleton-line h-4 w-16 mb-12"></div>
+            <div class="skeleton-line h-4 w-24 mb-4"></div>
+            <div class="skeleton-line h-8 w-3/4 mb-4"></div>
+            <div class="skeleton-line h-16 w-full mb-6"></div>
+            <div class="skeleton-line h-6 w-32"></div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-line h-4 w-16 mb-12"></div>
+            <div class="skeleton-line h-4 w-24 mb-4"></div>
+            <div class="skeleton-line h-8 w-3/4 mb-4"></div>
+            <div class="skeleton-line h-16 w-full mb-6"></div>
+            <div class="skeleton-line h-6 w-32"></div>
+          </div>
         } @else {
           @for (project of projects; track project.id; let index = $index) {
             <article appReveal class="project-card" [class.project-featured]="index === 0" [style.grid-column]="isLastOdd(index) ? 'span 2' : 'span 1'">
               <div class="project-index">0{{ index + 1 }}</div>
-              <div class="mt-20">
-                <p class="card-kicker project-kicker text-lime">{{ project.category }}</p>
-                <h3 class="mt-4 font-display text-4xl leading-none text-paper md:text-5xl">{{ language() === 'tr' ? project.titleTr : project.titleEn }}</h3>
-                <p class="mt-5 max-w-lg leading-relaxed text-paper/60">{{ language() === 'tr' ? project.descriptionTr : project.descriptionEn }}</p>
-                <div class="mt-8 flex flex-wrap gap-2"><span class="tag">{{ project.techStack }}</span></div>
+              <div class="mt-12">
+                <p class="card-kicker project-kicker text-emerald-300">{{ project.category }}</p>
+                <h3 class="mt-3 font-display text-3xl leading-none text-paper md:text-4xl">{{ language() === 'tr' ? project.titleTr : project.titleEn }}</h3>
+                <p class="mt-4 max-w-lg leading-relaxed text-paper/60">{{ language() === 'tr' ? project.descriptionTr : project.descriptionEn }}</p>
+                
+                <div class="mt-6 flex flex-wrap gap-2">
+                  <span class="tag" [attr.data-tech]="project.techStack.toLowerCase()">
+                    <span class="tag-dot"></span>
+                    {{ project.techStack }}
+                  </span>
+                </div>
               </div>
-              <div class="mt-10 flex gap-5 text-sm">
-                <a [href]="project.githubUrl" target="_blank" rel="noopener" class="text-lime transition hover:text-paper">GitHub ↗</a>
+              <div class="mt-8 flex gap-5 text-sm">
+                <a [href]="project.githubUrl" target="_blank" rel="noopener" class="text-emerald-300 transition hover:text-paper">GitHub ↗</a>
                 @if (project.liveUrl) {
-                  <a [href]="project.liveUrl" target="_blank" rel="noopener" class="text-paper/60 transition hover:text-coral">{{ language() === 'tr' ? 'Canlı Demo' : 'Live Demo' }} ↗</a>
+                  <a [href]="project.liveUrl" target="_blank" rel="noopener" class="text-paper/60 transition hover:text-purple-300">{{ language() === 'tr' ? 'Canlı Demo' : 'Live Demo' }} ↗</a>
                 }
               </div>
             </article>
           } @empty {
-            <div class="bento-card text-paper/50">Yakında yeni projeler eklenecek.</div>
+            <div class="bento-card text-paper/50 col-span-2 text-center py-8">Yakında yeni projeler eklenecek.</div>
           }
         }
       </div>
@@ -91,17 +134,17 @@
   </section>
 
   <section id="skills" appReveal class="section-wrap skills-section reveal-section">
-    <div class="mx-auto max-w-7xl px-6 py-28 md:px-16 md:py-40">
+    <div class="mx-auto max-w-7xl px-6 py-14 md:px-16 md:py-20">
       <div class="section-heading">
         <span class="section-heading-title">{{ language() === 'tr' ? 'Yetenekler' : 'Skills' }}</span>
         <span class="heading-line"></span>
         <span class="heading-meta">{{ language() === 'tr' ? 'Neyle çalışıyorum' : 'What I work with' }}</span>
       </div>
-      <div class="mt-14 space-y-5">
+      <div class="mt-10 space-y-4">
         @for (group of skillsByCategory; track group.category) {
           <div class="bento-card skill-category-card">
             <span class="card-kicker">{{ group.category }}</span>
-            <div class="mt-8 flex flex-wrap gap-3">
+            <div class="mt-6 flex flex-wrap gap-3">
               @for (skill of group.skills; track skill.id) {
                 <span class="skill-pill">{{ skill.name }}</span>
               }
@@ -115,19 +158,19 @@
   </section>
 
   <section id="education" appReveal class="section-wrap education-section reveal-section">
-    <div class="mx-auto max-w-7xl px-6 py-28 md:px-16 md:py-40">
+    <div class="mx-auto max-w-7xl px-6 py-14 md:px-16 md:py-20">
       <div class="section-heading">
         <span class="section-heading-title">{{ language() === 'tr' ? 'Eğitim' : 'Education' }}</span>
         <span class="heading-line"></span>
         <span class="heading-meta">{{ language() === 'tr' ? 'Akademik yolculuğum' : 'My academic path' }}</span>
       </div>
-      <div class="mt-14 space-y-4">
+      <div class="mt-10 space-y-3">
         @for (edu of educations; track edu.id) {
           <article class="education-row">
-            <div class="text-sm text-lime">{{ edu.startYear }} — {{ edu.endYear || (language() === 'tr' ? 'Halen' : 'Present') }}</div>
+            <div class="text-sm text-emerald-300">{{ edu.startYear }} — {{ edu.endYear || (language() === 'tr' ? 'Halen' : 'Present') }}</div>
             <div>
-              <h3 class="font-display text-3xl text-paper">{{ language() === 'tr' ? edu.schoolNameTr : edu.schoolNameEn }}</h3>
-              <p class="mt-2 text-paper/60">{{ language() === 'tr' ? edu.departmentTr : edu.departmentEn }}</p>
+              <h3 class="font-display text-2xl text-paper">{{ language() === 'tr' ? edu.schoolNameTr : edu.schoolNameEn }}</h3>
+              <p class="mt-1 text-paper/60">{{ language() === 'tr' ? edu.departmentTr : edu.departmentEn }}</p>
             </div>
             @if (edu.isExchange) {
               <span class="tag ml-auto">Erasmus</span>
@@ -141,13 +184,13 @@
   </section>
 
   <section id="papers" appReveal class="section-wrap papers-section reveal-section">
-    <div class="mx-auto max-w-7xl px-6 py-28 md:px-16 md:py-40">
+    <div class="mx-auto max-w-7xl px-6 py-14 md:px-16 md:py-20">
       <div class="section-heading">
         <span class="section-heading-title">{{ language() === 'tr' ? 'Akademik Çalışmalar' : 'Academic Work' }}</span>
         <span class="heading-line"></span>
         <span class="heading-meta">{{ language() === 'tr' ? 'Araştırma ilgi alanlarım' : 'My research interests' }}</span>
       </div>
-      <div class="mt-14">
+      <div class="mt-10">
         @for (paper of papers; track paper.id) {
           <article class="paper-row">
             <div class="paper-meta">
@@ -155,13 +198,13 @@
               <span class="paper-status">{{ paper.status }}</span>
             </div>
             <div class="paper-body">
-              <h3 class="font-display text-3xl leading-tight text-paper md:text-4xl">{{ language() === 'tr' ? paper.titleTr : paper.titleEn }}</h3>
-              <p class="mt-5 max-w-3xl text-lg leading-relaxed text-paper/60">{{ language() === 'tr' ? paper.abstractTr : paper.abstractEn }}</p>
+              <h3 class="font-display text-2xl leading-tight text-paper md:text-3xl">{{ language() === 'tr' ? paper.titleTr : paper.titleEn }}</h3>
+              <p class="mt-3 max-w-3xl text-base leading-relaxed text-paper/60">{{ language() === 'tr' ? paper.abstractTr : paper.abstractEn }}</p>
               @if (paper.coAuthors) {
-                <p class="mt-4 text-sm text-paper/40">{{ paper.coAuthors }}</p>
+                <p class="mt-3 text-sm text-paper/40">{{ paper.coAuthors }}</p>
               }
               @if (paper.doiNumber) {
-                <a [href]="'https://doi.org/' + paper.doiNumber" target="_blank" rel="noopener" class="mt-6 inline-block text-lime transition hover:text-paper">{{ paper.doiNumber }} ↗</a>
+                <a [href]="'https://doi.org/' + paper.doiNumber" target="_blank" rel="noopener" class="mt-4 inline-block text-emerald-300 transition hover:text-paper">{{ paper.doiNumber }} ↗</a>
               }
             </div>
           </article>
@@ -169,8 +212,8 @@
           <article class="paper-row">
             <div class="paper-meta"><span class="card-kicker">{{ language() === 'tr' ? 'Yakında' : 'Coming soon' }}</span></div>
             <div class="paper-body">
-              <p class="font-display text-3xl leading-tight text-lime">{{ language() === 'tr' ? 'Yeni araştırmalar, aynı merak.' : 'New research, same curiosity.' }}</p>
-              <p class="mt-4 text-lg leading-relaxed text-paper/60">{{ language() === 'tr' ? 'DOI, dergi ve yayın detayları admin panelinden eklendiğinde burada görünecek.' : 'DOI, journal, and publication details will appear here once added from the admin panel.' }}</p>
+              <p class="font-display text-2xl leading-tight text-emerald-400">{{ language() === 'tr' ? 'Yeni araştırmalar, aynı merak.' : 'New research, same curiosity.' }}</p>
+              <p class="mt-3 text-base leading-relaxed text-paper/60">{{ language() === 'tr' ? 'DOI, dergi ve yayın detayları admin panelinden eklendiğinde burada görünecek.' : 'DOI, journal, and publication details will appear here once added from the admin panel.' }}</p>
             </div>
           </article>
         }
@@ -179,32 +222,47 @@
   </section>
 
   <section id="contact" appReveal class="section-wrap contact-section reveal-section">
-    <div class="mx-auto max-w-7xl px-6 py-28 md:px-16 md:py-40">
+    <div class="mx-auto max-w-7xl px-6 py-14 md:px-16 md:py-20">
       <div class="section-heading">
         <span class="section-heading-title">{{ language() === 'tr' ? 'İletişim' : 'Contact' }}</span>
         <span class="heading-line"></span>
         <span class="heading-meta">{{ language() === 'tr' ? 'Kanallar' : 'Channels' }}</span>
       </div>
-      <div class="mt-14 grid items-end gap-12 md:grid-cols-2">
+      <div class="mt-10 grid items-end gap-10 md:grid-cols-2">
         <div>
-          <p class="card-kicker text-coral">{{ language() === 'tr' ? 'Bir sonraki adım' : 'Next step' }}</p>
-          <h2 class="mt-8 font-display text-6xl leading-[0.9] text-paper md:text-7xl">
-            {{ language() === 'tr' ? 'İletişime' : 'Get in' }}<br /><span class="text-lime">{{ language() === 'tr' ? 'geçin.' : 'touch.' }}</span>
+          <p class="card-kicker text-purple-300">{{ language() === 'tr' ? 'Bir sonraki adım' : 'Next step' }}</p>
+          <h2 class="mt-6 font-display text-5xl leading-[0.9] text-paper md:text-6xl">
+            {{ language() === 'tr' ? 'İletişime' : 'Get in' }}<br /><span class="text-emerald-300">{{ language() === 'tr' ? 'geçin.' : 'touch.' }}</span>
           </h2>
         </div>
         <div class="md:pb-2">
           <p class="max-w-md text-lg leading-relaxed text-paper/60">{{ language() === 'tr' ? 'Profesyonel iş birlikleri ve kariyer fırsatları için aşağıdaki kanallardan bana ulaşabilirsiniz.' : 'For professional opportunities and collaborations, feel free to reach out through the channels below.' }}</p>
-          <div class="mt-8 flex flex-wrap gap-5 text-sm">
-            <a href="mailto:atakan.ozcelebi.dev@gmail.com" class="text-lime hover:text-paper">atakan.ozcelebi.dev@gmail.com ↗</a>
+          
+          <div class="mt-6 flex flex-wrap items-center gap-4 text-sm">
+            <a href="mailto:atakan.ozcelebi.dev@gmail.com" class="text-emerald-300 hover:text-paper transition-colors">atakan.ozcelebi.dev@gmail.com ↗</a>
             <button type="button" class="copy-button cursor-pointer" (click)="copyEmail()">{{ emailCopied ? (language() === 'tr' ? 'Kopyalandı' : 'Copied') : (language() === 'tr' ? 'E-postayı kopyala' : 'Copy email') }}</button>
-            <a href="https://github.com/oemzzz" target="_blank" rel="noopener" class="text-paper/60 hover:text-coral">GitHub ↗</a>
-            <a href="https://www.linkedin.com/in/atakan-ozcelebi/" target="_blank" rel="noopener" class="text-paper/60 hover:text-coral">LinkedIn ↗</a>
-            <a href="/assets/cv.pdf" download class="text-paper/60 hover:text-coral">CV ↗</a>
+            
+            <div class="flex items-center gap-3 ml-0 sm:ml-2">
+              <a href="https://github.com/oemzzz" target="_blank" rel="noopener" class="social-icon-btn" aria-label="GitHub">
+                <svg class="size-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+
+              <a href="https://www.linkedin.com/in/atakan-ozcelebi/" target="_blank" rel="noopener" class="social-icon-btn" aria-label="LinkedIn">
+                <svg class="size-4 fill-current" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.386zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451c.979 0 1.778-.773 1.778-1.729V1.729C24 .774 23.205 0 22.225 0z"/></svg>
+              </a>
+
+              <a href="/assets/cv.pdf" download class="social-icon-btn" aria-label="Download CV">
+                <svg class="size-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="mt-20 flex max-w-7xl justify-between border-t border-paper/10 pt-6 text-xs uppercase tracking-[0.18em] text-paper/40">
+        <span>Atakan / {{ language() === 'tr' ? 'Portfolyo' : 'Portfolio' }}</span>
+        <span>{{ language() === 'tr' ? 'Özenle geliştirildi' : 'Built with care' }} · 2026</span>
+      </div>
     </div>
   </section>
-
-  <footer class="mx-auto flex max-w-7xl justify-between border-t border-paper/10 px-6 py-8 text-xs uppercase tracking-[0.18em] text-paper/40 md:px-16"><span>Atakan / {{ language() === 'tr' ? 'Portfolyo' : 'Portfolio' }}</span><span>{{ language() === 'tr' ? 'Özenle geliştirildi' : 'Built with care' }} · 2026</span></footer>
 </div>

@@ -6,6 +6,25 @@
   transform: translateY(-12px);
   animation: nav-enter 700ms ease forwards;
   animation-delay: 200ms;
+  
+  // Logo/İsim stili
+  > a:first-child {
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.1em;
+    background: linear-gradient(135deg, #e2e8f0 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 300ms ease;
+    
+    &:hover {
+      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
 }
 
 @keyframes nav-enter {
@@ -15,10 +34,12 @@
   }
 }
 
-// Masaüstü nav linkleri — altı çizili hover animasyonu
+// Masaüstü nav linkleri — modern stil
 .nav-link {
   position: relative;
   transition: color 250ms ease;
+  font-weight: 500;
+  letter-spacing: 0.15em;
 }
 
 .nav-link::after {
@@ -27,15 +48,15 @@
   left: 0;
   bottom: -4px;
   width: 100%;
-  height: 1px;
-  background: currentColor;
+  height: 2px;
+  background: linear-gradient(90deg, #a78bfa, #60a5fa);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 300ms ease;
 }
 
 .nav-link:hover {
-  color: #ff765f;
+  color: #a78bfa;
 }
 
 .nav-link:hover::after {
