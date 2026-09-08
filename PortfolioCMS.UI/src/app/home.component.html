@@ -14,13 +14,13 @@
     <div class="ambient-noise"></div>
   </div>
   
-  <section id="hero" appReveal class="section-wrap hero-section relative flex min-h-screen items-center py-16">
+  <section id="hero" appReveal class="section-wrap hero-section relative flex min-h-screen items-center py-8">
     <div class="hero-mute-overlay absolute inset-0" aria-hidden="true"></div>
     <div class="relative mx-auto w-full max-w-7xl px-6 pt-16 pb-12 md:px-16">
       <div class="grid gap-12 lg:grid-cols-[1.2fr_1fr] items-center">
         <div class="flex flex-col justify-center">
           <h1 class="max-w-xl font-display text-[clamp(3.5rem,8vw,7.5rem)] leading-[0.9] tracking-[-0.04em] text-paper">
-            Merhaba,<br />ben <span class="text-purple-300">Atakan.</span>
+            Merhaba,<br />ben <span class="gradient-text">Atakan.</span>
           </h1>
           <div class="mt-6 flex flex-col gap-4">
             <p class="max-w-lg text-lg leading-relaxed text-paper/65 md:text-xl">
@@ -31,9 +31,9 @@
             </div>
           </div>
           <div class="mt-8 flex flex-wrap gap-4 items-center">
-            <a href="/assets/cv.pdf" download class="button-primary">{{ language() === 'tr' ? 'CV indir' : 'Download CV' }} <span>↗</span></a>
-            <a href="#about" class="button-quiet">{{ language() === 'tr' ? 'Beni tanı' : 'Meet me' }} <span>↓</span></a>
-            <a href="#contact" class="contact-mini-button">{{ language() === 'tr' ? 'İletişime geç' : 'Get in touch' }} <span>→</span></a>
+            <a href="/assets/cv.pdf" download class="button-primary" aria-label="{{ language() === 'tr' ? 'CV indir' : 'Download CV' }}">{{ language() === 'tr' ? 'CV indir' : 'Download CV' }} <span>↗</span></a>
+            <a href="#about" class="button-quiet" aria-label="{{ language() === 'tr' ? 'Beni tanı' : 'Meet me' }}">{{ language() === 'tr' ? 'Beni tanı' : 'Meet me' }} <span>↓</span></a>
+            <a href="#contact" class="contact-mini-button" aria-label="{{ language() === 'tr' ? 'İletişime geç' : 'Get in touch' }}">{{ language() === 'tr' ? 'İletişime geç' : 'Get in touch' }} <span>→</span></a>
           </div>
           
           <div class="scroll-indicator-wrap text-xs uppercase tracking-[0.2em] text-paper/40">
@@ -60,7 +60,7 @@
   </section>
 
   <section id="about" appReveal class="section-wrap about-section reveal-section">
-    <div class="mx-auto max-w-7xl px-6 py-14 md:px-16 md:py-20">
+    <div class="mx-auto max-w-7xl px-6 py-8 md:px-16 md:py-12">
       <div class="section-heading">
         <span class="section-heading-title">{{ language() === 'tr' ? 'Hakkımda' : 'About' }}</span>
         <span class="heading-line"></span>
@@ -80,7 +80,7 @@
   </section>
 
   <section id="projects" appReveal class="section-wrap projects-section reveal-section">
-    <div class="mx-auto max-w-7xl px-6 py-14 md:px-16 md:py-20">
+    <div class="mx-auto max-w-7xl px-6 py-8 md:px-16 md:py-12">
       <div class="section-heading">
         <span class="section-heading-title">{{ language() === 'tr' ? 'Projeler' : 'Projects' }}</span>
         <span class="heading-line"></span>
@@ -134,7 +134,7 @@
   </section>
 
   <section id="skills" appReveal class="section-wrap skills-section reveal-section">
-    <div class="mx-auto max-w-7xl px-6 py-14 md:px-16 md:py-20">
+    <div class="mx-auto max-w-7xl px-6 py-8 md:px-16 md:py-12">
       <div class="section-heading">
         <span class="section-heading-title">{{ language() === 'tr' ? 'Yetenekler' : 'Skills' }}</span>
         <span class="heading-line"></span>
@@ -158,7 +158,7 @@
   </section>
 
   <section id="education" appReveal class="section-wrap education-section reveal-section">
-    <div class="mx-auto max-w-7xl px-6 py-14 md:px-16 md:py-20">
+    <div class="mx-auto max-w-7xl px-6 py-8 md:px-16 md:py-12">
       <div class="section-heading">
         <span class="section-heading-title">{{ language() === 'tr' ? 'Eğitim' : 'Education' }}</span>
         <span class="heading-line"></span>
@@ -184,7 +184,7 @@
   </section>
 
   <section id="papers" appReveal class="section-wrap papers-section reveal-section">
-    <div class="mx-auto max-w-7xl px-6 py-14 md:px-16 md:py-20">
+    <div class="mx-auto max-w-7xl px-6 py-8 md:px-16 md:py-12">
       <div class="section-heading">
         <span class="section-heading-title">{{ language() === 'tr' ? 'Akademik Çalışmalar' : 'Academic Work' }}</span>
         <span class="heading-line"></span>
@@ -222,7 +222,7 @@
   </section>
 
   <section id="contact" appReveal class="section-wrap contact-section reveal-section">
-    <div class="mx-auto max-w-7xl px-6 py-14 md:px-16 md:py-20">
+    <div class="mx-auto max-w-7xl px-6 py-8 md:px-16 md:py-12">
       <div class="section-heading">
         <span class="section-heading-title">{{ language() === 'tr' ? 'İletişim' : 'Contact' }}</span>
         <span class="heading-line"></span>

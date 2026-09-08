@@ -4,12 +4,12 @@
   <nav class="nav-desktop pointer-events-auto fixed inset-x-0 top-0 z-30 hidden items-center justify-between border-b border-paper/10 bg-ink/70 px-10 py-5 text-xs uppercase tracking-[0.18em] text-paper/70 backdrop-blur md:flex">
 <a href="#hero" class="font-display text-base italic font-light tracking-wide text-paper/90 transition hover:text-coral" style="font-weight: 300;">Atakan Özçelebi</a>
     <div class="flex items-center gap-7">
-      <a href="#about" class="nav-link">{{ languageService.language() === 'tr' ? 'Hakkımda' : 'About' }}</a>
-      <a href="#projects" class="nav-link">{{ languageService.language() === 'tr' ? 'Projeler' : 'Projects' }}</a>
-      <a href="#skills" class="nav-link">{{ languageService.language() === 'tr' ? 'Yetenekler' : 'Skills' }}</a>
-      <a href="#education" class="nav-link">{{ languageService.language() === 'tr' ? 'Eğitim' : 'Education' }}</a>
-      <a href="#papers" class="nav-link">{{ languageService.language() === 'tr' ? 'Akademik Çalışmalar' : 'Academic Work' }}</a>
-      <a href="#contact" class="nav-link">{{ languageService.language() === 'tr' ? 'İletişim' : 'Contact' }}</a>
+      <a href="#about" class="nav-link" aria-label="{{ languageService.language() === 'tr' ? 'Hakkımda bölümüne git' : 'Go to About section' }}">{{ languageService.language() === 'tr' ? 'Hakkımda' : 'About' }}</a>
+      <a href="#projects" class="nav-link" aria-label="{{ languageService.language() === 'tr' ? 'Projeler bölümüne git' : 'Go to Projects section' }}">{{ languageService.language() === 'tr' ? 'Projeler' : 'Projects' }}</a>
+      <a href="#skills" class="nav-link" aria-label="{{ languageService.language() === 'tr' ? 'Yetenekler bölümüne git' : 'Go to Skills section' }}">{{ languageService.language() === 'tr' ? 'Yetenekler' : 'Skills' }}</a>
+      <a href="#education" class="nav-link" aria-label="{{ languageService.language() === 'tr' ? 'Eğitim bölümüne git' : 'Go to Education section' }}">{{ languageService.language() === 'tr' ? 'Eğitim' : 'Education' }}</a>
+      <a href="#papers" class="nav-link" aria-label="{{ languageService.language() === 'tr' ? 'Akademik Çalışmalar bölümüne git' : 'Go to Academic Work section' }}">{{ languageService.language() === 'tr' ? 'Akademik Çalışmalar' : 'Academic Work' }}</a>
+      <a href="#contact" class="nav-link" aria-label="{{ languageService.language() === 'tr' ? 'İletişim bölümüne git' : 'Go to Contact section' }}">{{ languageService.language() === 'tr' ? 'İletişim' : 'Contact' }}</a>
       <button type="button" class="language-toggle cursor-pointer" (click)="languageService.toggle()" [attr.aria-label]="languageService.language() === 'tr' ? 'Switch to English' : 'Türkçeye geç'">{{ languageService.language() === 'tr' ? 'EN' : 'TR' }}</button>
     </div>
   </nav>
@@ -49,13 +49,13 @@
     aria-label="Ana menü"
   >
     <nav class="space-y-6 text-2xl font-display">
-      <a href="#hero" (click)="closeMenu()" class="block transition hover:translate-x-2 hover:text-purple-300" style="font-weight: 300; font-style: italic;">{{ languageService.language() === 'tr' ? 'Başlangıç' : 'Start' }}</a>
-      <a href="#about" (click)="closeMenu()" class="block transition hover:translate-x-2 hover:text-purple-300">{{ languageService.language() === 'tr' ? 'Hakkımda' : 'About' }}</a>
-      <a href="#projects" (click)="closeMenu()" class="block transition hover:translate-x-2 hover:text-purple-300">{{ languageService.language() === 'tr' ? 'Projeler' : 'Projects' }}</a>
-      <a href="#skills" (click)="closeMenu()" class="block transition hover:translate-x-2 hover:text-purple-300">{{ languageService.language() === 'tr' ? 'Yetenekler' : 'Skills' }}</a>
-      <a href="#education" (click)="closeMenu()" class="block transition hover:translate-x-2 hover:text-purple-300">{{ languageService.language() === 'tr' ? 'Eğitim' : 'Education' }}</a>
-      <a href="#papers" (click)="closeMenu()" class="block transition hover:translate-x-2 hover:text-purple-300">{{ languageService.language() === 'tr' ? 'Akademik Çalışmalar' : 'Academic Work' }}</a>
-      <a href="#contact" (click)="closeMenu()" class="block transition hover:translate-x-2 hover:text-purple-300">{{ languageService.language() === 'tr' ? 'İletişim' : 'Contact' }}</a>
+      <a href="#hero" (click)="closeMenu()" class="block transition hover:translate-x-2 hover:text-purple-300" style="font-weight: 300; font-style: italic;" aria-label="{{ languageService.language() === 'tr' ? 'Başlangıç bölümüne git' : 'Go to Start section' }}">{{ languageService.language() === 'tr' ? 'Başlangıç' : 'Start' }}</a>
+      <a href="#about" (click)="closeMenu()" class="block transition hover:translate-x-2 hover:text-purple-300" aria-label="{{ languageService.language() === 'tr' ? 'Hakkımda bölümüne git' : 'Go to About section' }}">{{ languageService.language() === 'tr' ? 'Hakkımda' : 'About' }}</a>
+      <a href="#projects" (click)="closeMenu()" class="block transition hover:translate-x-2 hover:text-purple-300" aria-label="{{ languageService.language() === 'tr' ? 'Projeler bölümüne git' : 'Go to Projects section' }}">{{ languageService.language() === 'tr' ? 'Projeler' : 'Projects' }}</a>
+      <a href="#skills" (click)="closeMenu()" class="block transition hover:translate-x-2 hover:text-purple-300" aria-label="{{ languageService.language() === 'tr' ? 'Yetenekler bölümüne git' : 'Go to Skills section' }}">{{ languageService.language() === 'tr' ? 'Yetenekler' : 'Skills' }}</a>
+      <a href="#education" (click)="closeMenu()" class="block transition hover:translate-x-2 hover:text-purple-300" aria-label="{{ languageService.language() === 'tr' ? 'Eğitim bölümüne git' : 'Go to Education section' }}">{{ languageService.language() === 'tr' ? 'Eğitim' : 'Education' }}</a>
+      <a href="#papers" (click)="closeMenu()" class="block transition hover:translate-x-2 hover:text-purple-300" aria-label="{{ languageService.language() === 'tr' ? 'Akademik Çalışmalar bölümüne git' : 'Go to Academic Work section' }}">{{ languageService.language() === 'tr' ? 'Akademik Çalışmalar' : 'Academic Work' }}</a>
+      <a href="#contact" (click)="closeMenu()" class="block transition hover:translate-x-2 hover:text-purple-300" aria-label="{{ languageService.language() === 'tr' ? 'İletişim bölümüne git' : 'Go to Contact section' }}">{{ languageService.language() === 'tr' ? 'İletişim' : 'Contact' }}</a>
     </nav>
     <div class="text-xs uppercase tracking-[0.2em] text-paper/40">{{ languageService.language() === 'tr' ? 'Portfolyo' : 'Portfolio' }} / 2026</div>
   </aside>
