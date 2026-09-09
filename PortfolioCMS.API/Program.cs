@@ -63,7 +63,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAngularApp",
         policy => policy.WithOrigins(
                             "http://localhost:4200", 
-                            "https://portfolio-cms-theta-lemon.vercel.app"
+                            "https://portfolio-cms-theta-lemon.vercel.app",
+                            "https://atakanozcelebi.dev",
+                            "https://www.atakanozcelebi.dev"
                         )
                         .AllowAnyMethod()
                         .AllowAnyHeader());
