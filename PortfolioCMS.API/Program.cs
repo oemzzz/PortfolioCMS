@@ -61,7 +61,10 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularApp",
-        policy => policy.WithOrigins(allowedOrigins)
+        policy => policy.WithOrigins(
+                            "http://localhost:4200", 
+                            "https://portfolio-cms-theta-lemon.vercel.app"
+                        )
                         .AllowAnyMethod()
                         .AllowAnyHeader());
 });
@@ -101,8 +104,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
 
 app.UseCors("AllowAngularApp");
 
