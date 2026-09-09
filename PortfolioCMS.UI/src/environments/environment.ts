@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:5258/api' 
+  production: true,
+  apiUrl: 'https://portfolio-atakan-api-frehd9bphugrg0hj.polandcentral-01.azurewebsites.net/api'
 };
