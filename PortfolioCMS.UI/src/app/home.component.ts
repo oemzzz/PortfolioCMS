@@ -27,11 +27,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   language = this.languageService.language;
   emailCopied = false;
   scrollOffset = 0;
-  scrollProgress = 0;
   typedRole = '';
   isLoading = true;
   private typewriterTimer?: ReturnType<typeof setTimeout>;
   private typewriterIndex = 0;
+  private ticking = false; // Chrome/Edge render optimizasyonu için eklendi
   private readonly roles = ['Computer Engineer', 'Full Stack .NET Developer', 'DL/ML Researcher'];
   private readonly skillCategoryOrder = ['Backend', 'Architecture & Practices', 'Database', 'Frontend', 'Tools', 'Data Science'];
 
@@ -89,14 +89,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.languageService.toggle();
   }
 
-  @HostListener('window:scroll')
+  @HostListener('window:scroll', [])
   onWindowScroll(): void {
-    this.scrollOffset = Math.min(window.scrollY * 0.22, 320);
-    
-    // Calculate scroll progress
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    this.scrollProgress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    if (!this.ticking) {
+      window.requestAnimationFrame(() => {
+        this.scrollOffset = Math.min(window.scrollY * 0.22, 320);
+        this.ticking = false;
+      });
+      this.ticking = true;
+    }
   }
 
   async copyEmail(): Promise<void> {

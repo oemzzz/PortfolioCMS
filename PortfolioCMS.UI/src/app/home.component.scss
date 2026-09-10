@@ -493,3 +493,14 @@
   object-fit: cover; 
   display: block; 
 }
+h1 {
+  /* Mobilde satır yüksekliğinin yazıları patlatmasını önler */
+  line-height: 1.15 !important; 
+}
+
+@media (min-width: 768px) {
+  h1 {
+    /* Masaüstünde orijinal tasarımındaki agresif dar yapı korunur */
+    line-height: 0.9 !important; 
+  }
+}
