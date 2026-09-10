@@ -12,6 +12,11 @@ export interface AuthResponse {
   token: string;
 }
 
+interface JwtPayload {
+  exp: number; // seconds since epoch
+  [key: string]: unknown;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -39,6 +44,35 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!this.getToken();
+    const token = this.getToken();
+    if (!token) {
+      return false;
+    }
+
+    const payload = this.decodeToken(token);
+    if (!payload || !payload.exp) {
+      // Decode edilemiyorsa veya exp claim'i yoksa güvenli tarafta kal
+      this.logout();
+      return false;
+    }
+
+    const isExpired = Date.now() >= payload.exp * 1000;
+    if (isExpired) {
+      this.logout(); // süresi dolmuş token'ı temizle
+      return false;
+    }
+
+    return true;
+  }
+
+  private decodeToken(token: string): JwtPayload | null {
+    try {
+      const payloadBase64 = token.split('.')[1];
+      const normalized = payloadBase64.replace(/-/g, '+').replace(/_/g, '/');
+      const decoded = atob(normalized);
+      return JSON.parse(decoded) as JwtPayload;
+    } catch {
+      return null;
+    }
   }
 }
