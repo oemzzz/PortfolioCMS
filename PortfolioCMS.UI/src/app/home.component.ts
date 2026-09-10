@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private typewriterIndex = 0;
   private ticking = false; // Chrome/Edge render optimizasyonu için eklendi
   private readonly roles = ['Computer Engineer', 'Full Stack .NET Developer', 'DL/ML Researcher'];
-  private readonly skillCategoryOrder = ['Backend', 'Architecture & Practices', 'Database', 'Frontend', 'Tools', 'Data Science'];
+  private readonly skillCategoryOrder = ['Backend', 'Architecture & Practices', 'Database', 'Frontend', 'Tools', 'Machine Learning'];
 
   constructor(
     private projectService: ProjectService,
